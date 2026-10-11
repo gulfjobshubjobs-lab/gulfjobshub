@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,29 +6,215 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GulfJobsHub — GCC Jobs</title>
 <meta name="description" content="Find jobs across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.">
-<meta name="robots" content="index,follow">
-<meta name="theme-color" content="#102a43">
 <meta property="og:title" content="GulfJobsHub — Find your next job in the Gulf">
 <meta property="og:description" content="Search opportunities across the six GCC countries.">
 <meta property="og:type" content="website">
+
 <style>
-:root{--ink:#102a43;--muted:#627d98;--bg:#f5f7fa;--card:#fff;--line:#d9e2ec;--accent:#0f766e;--accent2:#e6fffa;--warning:#fff7ed}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.nav{max-width:1120px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}.logo{font-size:23px;font-weight:800;white-space:nowrap}.logo span{color:var(--accent)}nav{display:flex;gap:14px;flex-wrap:wrap}nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:14px}.hero{background:linear-gradient(135deg,#0b3d3a,#0f766e);color:#fff;padding:54px 20px}.hero-inner{max-width:1120px;margin:auto}.hero h1{font-size:clamp(32px,5vw,48px);line-height:1.05;margin:0 0 14px}.hero p{font-size:18px;max-width:700px}.search{background:#fff;padding:13px;border-radius:14px;display:grid;grid-template-columns:minmax(180px,2fr) minmax(130px,1fr) minmax(130px,1fr) auto auto;gap:9px;margin-top:25px;box-shadow:0 12px 30px #0002}input,select,textarea{font:inherit;padding:12px;border:1px solid var(--line);border-radius:9px;min-width:0;width:100%}button,.button{font:inherit;padding:11px 14px;border:0;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}button.secondary{background:#eaf0f5;color:var(--ink)}button.warning{background:#b45309}main{max-width:1120px;margin:30px auto;padding:0 20px}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.grid,.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.job,.feature,.panel{background:var(--card);padding:19px;border:1px solid var(--line);border-radius:14px;min-width:0}.job h3{margin:10px 0 4px}.company{font-weight:700}.meta{color:var(--muted);font-size:14px;margin:7px 0}.tag{display:inline-block;background:var(--accent2);color:var(--accent);padding:4px 8px;b
-order-radius:20px;font-size:12px;margin:4px 4px 0 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{font-size:13px}.muted{color:var(--muted)}section.info{margin:40px 0}.section-head{margin-bottom:15px}.section-head p{margin-top:4px;color:var(--muted)}.feature h3{margin:0 0 7px;font-size:17px}.feature p{color:var(--muted);font-size:14px;margin:0 0 12px}.notice{background:var(--warning);border:1px solid #fed7aa;border-radius:12px;padding:13px 15px;margin:20px 0;color:#7c2d12}.panel{margin:14px 0}.hidden{display:none!important}.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:16px;z-index:20;overflow:auto}.modal-box{background:#fff;border-radius:16px;padding:22px;max-width:580px;width:100%;max-height:90vh;overflow:auto}.modal-box h2{margin-top:0}.close{float:right;background:#eaf0f5;color:#333;padding:7px 11px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-grid .full{grid-column:1/-1}.small{font-size:12px;color:var(--muted)}footer{background:#102a43;color:#fff;padding:28px 20px;margin-top:45px}footer div{max-width:1120px;margin:auto}footer a{color:#fff;margin-right:12px}@media(max-width:820px){.grid,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.search{grid-template-columns:1fr 1fr}nav{gap:8px}}@media(max-width:560px){.grid,.feature-grid,.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.search{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.hero{padding:40px 18px}main{padding:0 14px}}
+:root{--ink:#102a43;--muted:#627d98;--bg:#f5f7fa;--card:#fff;--line:#d9e2ec;--accent:#0f766e;--accent2:#e6fffa;--warning:#fff7ed}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{max-width:1120px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{font-size:23px;font-weight:800;white-space:nowrap}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:14px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:14px}
+.hero{background:linear-gradient(135deg,#0b3d3a,#0f766e);color:#fff;padding:54px 20px}
+.hero-inner{max-width:1120px;margin:auto}
+.hero h1{font-size:clamp(32px,5vw,48px);line-height:1.05;margin:0 0 14px}
+.hero p{font-size:18px;max-width:700px}
+.search{background:#fff;padding:13px;border-radius:14px;display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:9px;margin-top:25px;box-shadow:0 12px 30px #0002}
+input,select,textarea{font:inherit;padding:12px;border:1px solid var(--line);border-radius:9px;min-width:0;width:100%}
+button,.button{font:inherit;padding:11px 14px;border:0;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+button.secondary{background:#eaf0f5;color:var(--ink)}
+button.warning{background:#b45309}
+main{max-width:1120px;margin:30px auto;padding:0 20px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.grid,.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.job,.feature,.panel{background:var(--card);padding:19px;border:1px solid var(--line);border-radius:14px;min-width:0}
+.job h3{margin:10px 0 4px}
+.company{font-weight:700}
+.meta{color:var(--muted);font-size:14px;margin:7px 0}
+.tag{display:inline-block;background:var(--accent2);color:var(--accent);padding:4px 8px;border-radius:20px;font-size:12px;margin:4px 4px 0 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.actions button{font-size:13px}
+.muted{color:var(--muted)}
+section.info{margin:40px 0}
+.section-head{margin-bottom:15px}
+.section-head p{margin-top:4px;color:var(--muted)}
+.feature h3{margin:0 0 7px;font-size:17px}
+.feature p{color:var(--muted);font-size:14px;margin:0 0 12px}
+.notice{background:var(--warning);border:1px solid #fed7aa;border-radius:12px;padding:13px 15px;margin:20px 0;color:#7c2d12}
+.panel{margin:14px 0}
+.hidden{display:none!important}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:16px;z-index:20;overflow:auto}
+.modal-box{background:#fff;border-radius:16px;padding:22px;max-width:580px;width:100%;max-height:90vh;overflow:auto}
+.modal-box h2{margin-top:0}
+.close{float:right;background:#eaf0f5;color:#333;padding:7px 11px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .full{grid-column:1/-1}
+.small{font-size:12px;color:var(--muted)}
+footer{background:#102a43;color:#fff;padding:28px 20px;margin-top:45px}
+footer div{max-width:1120px;margin:auto}
+footer a{color:#fff;margin-right:12px}
+
+@media(max-width:820px){
+.grid,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.search{grid-template-columns:1fr 1fr}
+nav{gap:8px}
+}
+@media(max-width:560px){
+.grid,.feature-grid,.form-grid{grid-template-columns:1fr}
+.form-grid .full{grid-column:auto}
+.search{grid-template-columns:1fr}
+.nav{align-items:flex-start;flex-direction:column}
+.hero{padding:40px 18px}
+main{padding:0 14px}
+}
 </style>
 </head>
+
 <body>
-<header><div class="nav"><div class="logo">Gulf<span>JobsHub</span></div><nav><a href="#jobs">Jobs</a><a href="#features">Features</a><a href="#companies">Companies</a><a href="#profile">My Profile</a><a href="#help">Help</a></nav></div></header>
-<section class="hero"><div class="hero-inner"><h1>Find your next job in the Gulf.</h1><p>Search opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.</p><div class="search"><input id="q" placeholder="Job title or keyword" aria-label="Job title or keyword"><select id="country" aria-label="Country"><option value="">All GCC countries</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select><select id="category" aria-label="Category"><option value="">All categories</option><option>IT</option><option>Telecom</option><option>Healthcare</option><option>Engineering</option><option>Hospitality</option><option>Sales</option><option>Construction</option></select><button onclick="filterJobs()">Search Jobs</button><button class="secondary" type="button" onclick="clearSearch()">Clear</button></div></div></section>
+<header>
+<div class="nav">
+<div class="logo">Gulf<span>JobsHub</span></div>
+<nav>
+<a href="#jobs">Jobs</a>
+<a href="#features">Features</a>
+<a href="#companies">Companies</a>
+<a href="#help">Help</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<h1>Find your next job in the Gulf.</h1>
+<p>Search opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.</p>
+
+<div class="search">
+<input id="q" placeholder="Job title or keyword" aria-label="Job title or keyword">
+
+<select id="country" aria-label="Country">
+<option value="">All GCC countries</option>
+<option>Saudi Arabia</option>
+<option>UAE</option>
+<option>Qatar</option>
+<option>Kuwait</option>
+<option>Bahrain</option>
+<option>Oman</option>
+</select>
+
+<select id="category" aria-label="Category">
+<option value="">All categories</option>
+<option>IT</option>
+<option>Telecom</option>
+<option>Healthcare</option>
+<option>Engineering</option>
+<option>Hospitality</option>
+<option>Sales</option>
+<option>Construction</option>
+</select>
+
+<button onclick="filterJobs()">Search Jobs</button>
+</div>
+</div>
+</section>
+
 <main>
-<div class="notice"><strong>Prototype notice:</strong> Listings below are sample demonstrations, not verified vacancies. This GitHub Pages version does not yet have secure accounts, a shared database, real applications, or server-side admin controls. Do not enter passwords or sensitive personal documents here.</div>
-<section id="jobs"><div class="bar"><h2>Latest Jobs</h2><span id="count" class="muted"></span></div><div class="grid" id="jobGrid"></div></section>
-<section class="info" id="features"><div class="section-head"><h2>Platform features</h2><p>All agreed options are shown here. Browser-only tools are demos; secure features need a backend before launch.</p></div><div class="feature-grid" id="featureGrid"></div></section>
-<section class="info" id="companies"><div class="section-head"><h2>For Companies</h2><p>Employer tools are currently a preview, not a live recruiter account system.</p></div><div class="feature-grid"><article class="feature"><h3>Post a vacancy</h3><p>Preview the job information employers will provide.</p><button onclick="openFeature('Post a Job')">Open job form</button></article><article class="feature"><h3>Applications</h3><p>Employer review, shortlist and status tracking require a secure database.</p><button class="secondary" onclick="showInfo('Applications','Application management is planned but not connected. No application will be sent from this static site.')">View status</button></article><article class="feature"><h3>Company profile</h3><p>Verification and recruiter permissions must be checked server-side.</p><button class="secondary" onclick="showInfo('Company profile','Company profiles and verification are not active yet. A badge must only be shown after real verification.')">Learn more</button></article></div></section>
-<section class="info" id="profile"><div class="section-head"><h2>Job Seeker Profile</h2><p>Create a basic profile saved only in this browser. This is not a secure online account.</p></div><div class="panel"><form id="profileForm" class="form-grid"><input id="profileName" name="name" placeholder="Full name" required><input id="profileEmail" name="email" type="email" placeholder="Email address"><input id="profileTitle" name="title" placeholder="Target job title"><select id="profileCountry" name="country"><option value="">Preferred GCC country</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select><textarea id="profileSkills" name="skills" class="full" placeholder="Skills and experience (do not include sensitive information)"></textarea><div class="full row"><button type="submit">Save Profile on This Device</button><button type="button" class="secondary" onclick="clearProfile()">Clear Profile</button><span id="profileMessage" class="small" role="status"></span></div></form></div></section>
-<section class="info" id="help"><h2>Help, privacy and safety</h2><div class="feature-grid"><article class="feature"><h3>Scam safety</h3><p>Never pay a recruiter to secure a job. Verify the employer independently.</p><button class="secondary" onclick="showInfo('Scam warnings','This page gives general safety guidance. Automated scam detection is not active yet.')">Safety tips</button></article><article class="feature"><h3>Privacy</h3><p>Do not submit sensitive data through this demo.</p><button class="secondary" onclick="showInfo('Privacy notice','This prototype stores saved/recent job IDs in this browser only. It does not provide a live account or secure CV storage.')">Privacy notice</button></article><article class="feature"><h3>Terms</h3><p>Use sample listings as a preview only.</p><button class="secondary" onclick="showInfo('Terms of use','This is a prototype. Listings are examples, and no job application or employer verification is performed.')">Terms summary</button></article></div></section>
+
+<div class="notice">
+<strong>Prototype notice:</strong>
+Listings below are sample demonstrations, not verified vacancies.
+This GitHub Pages version does not yet have secure accounts, a shared database,
+real applications, or server-side admin controls.
+Do not enter passwords or sensitive personal documents here.
+</div>
+
+<section id="jobs">
+<div class="bar">
+<h2>Latest Jobs</h2>
+<span id="count" class="muted"></span>
+</div>
+<div class="grid" id="jobGrid"></div>
+</section>
+
+<section class="info" id="features">
+<div class="section-head">
+<h2>Platform features</h2>
+<p>All agreed options are shown here. Browser-only tools are demos; secure features need a backend before launch.</p>
+</div>
+<div class="feature-grid" id="featureGrid"></div>
+</section>
+
+<section class="info" id="companies">
+<div class="section-head">
+<h2>For Companies</h2>
+<p>Employer tools are currently a preview, not a live recruiter account system.</p>
+</div>
+
+<div class="feature-grid">
+<article class="feature">
+<h3>Post a vacancy</h3>
+<p>Preview the job information employers will provide.</p>
+<button onclick="openFeature('Post a Job')">Open job form</button>
+</article>
+
+<article class="feature">
+<h3>Applications</h3>
+<p>Employer review, shortlist and status tracking require a secure database.</p>
+<button class="secondary" onclick="showInfo('Applications','Application management is planned but not connected. No application will be sent from this static site.')">View status</button>
+</article>
+
+<article class="feature">
+<h3>Company profile</h3>
+<p>Verification and recruiter permissions must be checked server-side.</p>
+<button class="secondary" onclick="showInfo('Company profile','Company profiles and verification are not active yet. A badge must only be shown after real verification.')">Learn more</button>
+</article>
+</div>
+</section>
+
+<section class="info" id="help">
+<h2>Help, privacy and safety</h2>
+<div class="feature-grid">
+
+<article class="feature">
+<h3>Scam safety</h3>
+<p>Never pay a recruiter to secure a job. Verify the employer independently.</p>
+<button class="secondary" onclick="showInfo('Scam warnings','This page gives general safety guidance. Automated scam detection is not active yet.')">Safety tips</button>
+</article>
+
+<article class="feature">
+<h3>Privacy</h3>
+<p>Do not submit sensitive data through this demo.</p>
+<button class="secondary" onclick="showInfo('Privacy notice','This prototype stores saved/recent job IDs in this browser only. It does not provide a live account or secure CV storage.')">Privacy notice</button>
+</article>
+
+<article class="feature">
+<h3>Terms</h3>
+<p>Use sample listings as a preview only.</p>
+<button class="secondary" onclick="showInfo('Terms of use','This is a prototype. Listings are examples, and no job application or employer verification is performed.')">Terms summary</button>
+</article>
+
+</div>
+</section>
 </main>
-<footer><div>© 2026 GulfJobsHub · GCC Jobs Platform<br><span class="small" style="color:#d9e2ec">Sample listings only. Secure recruitment services are not yet connected.</span></div></footer>
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><button class="close" onclick="closeModal()" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+
+<footer>
+<div>
+© 2026 GulfJobsHub · GCC Jobs Platform<br>
+<span class="small" style="color:#d9e2ec">Sample listings only. Secure recruitment services are not yet connected.</span>
+</div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal-box">
+<button class="close" onclick="closeModal()" aria-label="Close">×</button>
+<div id="modalBody"></div>
+</div>
+</div>
+
 <script>
 const jobs=[
 {id:1,t:'Software Engineer',c:'Tech Solutions (sample)',co:'Saudi Arabia',cat:'IT',city:'Riyadh',desc:'Sample role for software development and system support.',exp:'Not specified',edu:'Not specified',salary:'Not specified'},
@@ -40,26 +225,255 @@ const jobs=[
 {id:6,t:'Site Engineer',c:'Bahrain Build (sample)',co:'Bahrain',cat:'Construction',city:'Manama',desc:'Sample site engineering listing for demonstration.',exp:'Not specified',edu:'Not specified',salary:'Not specified'},
 {id:7,t:'Fiber Optic Technician',c:'Example Telecom Company (sample)',co:'Saudi Arabia',cat:'Telecom',city:'Jeddah',desc:'Sample telecom role. This is not a confirmed vacancy.',exp:'Not specified',edu:'Not specified',salary:'Not specified'}
 ];
+
 const features=[
-['Job Seeker','Preview the job-seeker area and available browser demos.','showInfo'],['Company','Company profiles are planned; no company account is connected.','showInfo'],['Employer / Recruiter','Recruiter dashboard and permissions need secure backend authentication.','showInfo'],['Admin Dashboard','Owner-only administration is not exposed here; it must be protected server-side.','showInfo'],['Job Views & Analytics','No real visitor analytics dashboard is connected yet.','showInfo'],['Recruitment / Applications','Apply and track applications after the secure backend is connected.','showInfo'],['Job Alerts','Email alerts need a backend and email service.','showInfo'],['6 Languages','English, Arabic, Urdu, Hindi, Bangla and Filipino are planned; translations are not complete.','showInfo'],['Rating & Reviews','Reviews require accounts, moderation and anti-abuse controls.','showInfo'],['Company Verification','Verification badges must only follow actual checks.','showInfo'],['Report Job / Report User','Open a local demo report form; reports are not sent to an admin.','report'],['Save Jobs','Save sample jobs in this browser only.','saved'],['Recently Viewed Jobs','See jobs opened in this browser only.','recent'],['CV Builder','Create a simple CV text draft in your browser; do not include sensitive IDs.','cv'],['Application Notifications','Real notifications are not connected.','showInfo'],['Automatic Job Expiry','Automatic expiry needs a database and scheduled server process.','showInfo'],['Advanced Search Filters','Use keyword, country and category filters above.','showInfo'],['Help & Support','Open basic help and safety information.','help'],['Privacy Policy & Terms','Read the prototype privacy and terms summaries.','help'],['SEO & Social Sharing','Page title, description and share metadata are included; search ranking is not guaranteed.','seo'],['Scam Warnings & Duplicate Job Detection','Safety guidance is included; automated duplicate/scam detection is not active.','showInfo']
+['Job Seeker','Preview the job-seeker area and available browser demos.','showInfo'],
+['Company','Company profiles are planned; no company account is connected.','showInfo'],
+['Employer / Recruiter','Recruiter dashboard and permissions need secure backend authentication.','showInfo'],
+['Admin Dashboard','Owner-only administration is not exposed here; it must be protected server-side.','showInfo'],
+['Job Views & Analytics','No real visitor analytics dashboard is connected yet.','showInfo'],
+['Recruitment / Applications','Apply and track applications after the secure backend is connected.','showInfo'],
+['Job Alerts','Email alerts need a backend and email service.','showInfo'],
+['6 Languages','English, Arabic, Urdu, Hindi, Bangla and Filipino are planned; translations are not complete.','showInfo'],
+['Rating & Reviews','Reviews require accounts, moderation and anti-abuse controls.','showInfo'],
+['Company Verification','Verification badges must only follow actual checks.','showInfo'],
+['Report Job / Report User','Open a local demo report form; reports are not sent to an admin.','report'],
+['Save Jobs','Save sample jobs in this browser only.','saved'],
+['Recently Viewed Jobs','See jobs opened in this browser only.','recent'],
+['CV Builder','Create a simple CV text draft in your browser; do not include sensitive IDs.','cv'],
+['Application Notifications','Real notifications are not connected.','showInfo'],
+['Automatic Job Expiry','Automatic expiry needs a database and scheduled server process.','showInfo'],
+['Advanced Search Filters','Use keyword, country and category filters above.','showInfo'],
+['Help & Support','Open basic help and safety information.','help'],
+['Privacy Policy & Terms','Read the prototype privacy and terms summaries.','help'],
+['SEO & Social Sharing','Page title, description and share metadata are included; search ranking is not guaranteed.','seo'],
+['Scam Warnings & Duplicate Job Detection','Safety guidance is included; automated duplicate/scam detection is not active.','showInfo']
 ];
-const $=id=>document.getElementById(id);const safe=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function getStore(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}}function setStore(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
-function render(list){$('jobGrid').innerHTML=list.map(j=>`<article class="job"><span class="tag">${safe(j.cat)}</span><h3>${safe(j.t)}</h3><div class="company">${safe(j.c)}</div><div class="meta">📍 ${safe(j.city)}, ${safe(j.co)}</div><div class="small">Sample listing · Not verified</div><div class="actions"><button onclick="viewJob(${j.id})">View Job</button><button class="secondary" onclick="saveJob(${j.id})">☆ Save</button></div></article>`).join('')||'<p>No matching sample jobs. Try another search.</p>';$('count').textContent=list.length+' sample jobs';}
-function filterJobs(){const q=$('q').value.toLowerCase().trim(),co=$('country').value,cat=$('category').value;render(jobs.filter(j=>(j.t+' '+j.c+' '+j.city+' '+j.co+' '+j.cat+' '+j.desc).toLowerCase().includes(q)&&(!co||j.co===co)&&(!cat||j.cat===cat)));}
-function clearSearch(){$('q').value='';$('country').value='';$('category').value='';render(jobs);}
-function modal(title,body){$('modalBody').innerHTML=`<h2 id="modalTitle">${safe(title)}</h2>${body}`;$('modal').style.display='flex'}function closeModal(){$('modal').style.display='none'}function showInfo(title,msg){modal(title,`<p>${safe(msg)}</p><button onclick="closeModal()">Close</button>`)}
-function viewJob(id){const j=jobs.find(x=>x.id===id);if(!j)return;let r=getStore('gjh_recent').filter(x=>x!==id);r.unshift(id);setStore('gjh_recent',r.slice(0,10));modal(j.t,`<p><strong>${safe(j.c)}</strong></p><p>📍 ${safe(j.city)}, ${safe(j.co)} · ${safe(j.cat)}</p><p>${safe(j.desc)}</p><p><strong>Salary:</strong> ${safe(j.salary)}<br><strong>Experience:</strong> ${safe(j.exp)}<br><strong>Education:</strong> ${safe(j.edu)}</p><div class="notice">This is a sample listing, not a verified vacancy. Applications are not connected.</div><button onclick="showInfo('Apply Now','No application has been sent. Apply Now will work after a secure employer/application system is connected.')">Apply Now</button> <button class="secondary" onclick="saveJob(${j.id})">Save Job</button> <button class="warning" onclick="openReport(${j.id})">Report Job</button>`)}
-function saveJob(id){let a=getStore('gjh_saved');if(!a.includes(id))a.push(id);setStore('gjh_saved',a);showInfo('Saved Jobs',a.includes(id)?'This sample job is saved in this browser only.':'Could not save this job in this browser.');}
-function openFeature(name){if(name==='Post a Job'){modal('Post a Job',`<p>This preview form does not publish a vacancy.</p><form onsubmit="event.preventDefault();showInfo('Demo only','The job has not been submitted or published. Employer posting needs a secure backend and review workflow.')"><div class="form-grid"><input required placeholder="Company name"><input required placeholder="Job title"><select required><option value="">Country</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select><input placeholder="City"><input placeholder="Salary (optional)"><input placeholder="Experience (optional)"><textarea class="full" placeholder="Job description"></textarea><button class="full" type="submit">Preview submit</button></div></form>`)} }
-function openReport(id){modal('Report Job / User',`<p>Demo report form. It will not be sent to an admin.</p><form onsubmit="event.preventDefault();showInfo('Report not sent','Your report has not been transmitted. A secure backend is required to deliver reports to the site owner.')"><select required><option value="">Choose reason</option><option>Fake or scam job</option><option>Expired vacancy</option><option>Duplicate listing</option><option>Misleading information</option><option>Report a user</option></select><textarea required placeholder="Details (do not include sensitive information)"></textarea><button type="submit">Preview report</button></form>`)}
-function openCV(){modal('Simple CV Builder',`<p class="small">Browser-only draft. Do not enter passport, national ID or other sensitive details.</p><form onsubmit="event.preventDefault();const d=new FormData(event.target);const txt='CV DRAFT\\nName: '+d.get('name')+'\\nEmail: '+d.get('email')+'\\nTarget role: '+d.get('role')+'\\nSkills: '+d.get('skills')+'\\nExperience: '+d.get('experience');const b=new Blob([txt],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='GulfJobsHub-CV-Draft.txt';a.click();URL.revokeObjectURL(a.href);showInfo('CV draft created','A basic text CV draft was generated on your device. This is not a secure account or cloud CV service.')"><div class="form-grid"><input name="name" required placeholder="Full name"><input name="email" type="email" placeholder="Email"><input class="full" name="role" placeholder="Target role"><textarea class="full" name="skills" placeholder="Skills"></textarea><textarea class="full" name="experience" placeholder="Work experience"></textarea><button class="full" type="submit">Create text CV</button></div></form>`)}
-function featureClick(name,action){if(name==='Job Seeker'){document.querySelector('#profile').scrollIntoView({behavior:'smooth'});return;}if(action==='report')openReport(null);else if(action==='saved'){const ids=getStore('gjh_saved');showInfo('Saved Jobs',ids.length?jobs.filter(j=>ids.includes(j.id)).map(j=>j.t).join(', '):'No jobs saved in this browser yet.')}else if(action==='recent'){const ids=getStore('gjh_recent');showInfo('Recently Viewed Jobs',ids.length?ids.map(id=>jobs.find(j=>j.id===id)?.t).filter(Boolean).join(', '):'No jobs viewed yet.')}else if(action==='cv')openCV();else if(action==='help')document.querySelector('#help').scrollIntoView({behavior:'smooth'});else if(action==='seo')showInfo('SEO & Social Sharing','Basic title, description and Open Graph metadata are included. This does not guarantee Google indexing or search ranking.');else showInfo(name,featureMessages[name]||'This feature is planned, but not active. Secure backend services are required before launch.')}
-const featureMessages={'Job Seeker':'A full user account/profile system is not active yet.','Company':'Company accounts and profiles are not active yet.','Employer / Recruiter':'Employer dashboard, candidate access controls and applications need secure server-side authentication.','Admin Dashboard':'The owner-only admin panel is not implemented as a secure live service. Never rely on a hidden page for admin security.','Job Views & Analytics':'Real analytics are not connected. Browser-local counts are not reliable site-wide traffic data.','Recruitment / Applications':'Applications, status tracking and employer shortlisting are not connected.','Job Alerts':'Email alerts need a backend and email provider.','6 Languages':'The six planned languages are English, Arabic, Urdu, Hindi, Bangla and Filipino. Full translations and language switching remain to be implemented.','Rating & Reviews':'Company reviews need authenticated accounts, moderation and abuse prevention.','Company Verification':'Company verification is not active. No company should be treated as verified from this prototype.','Application Notifications':'Email/push notifications are not connected.','Automatic Job Expiry':'Automatic expiry needs server-side scheduling and a shared database.','Advanced Search Filters':'Keyword, country and category filters work on the sample listings. Salary, education, experience and job-type filters are not implemented yet.','Scam Warnings & Duplicate Job Detection':'General scam advice is shown; automated detection is not active.'};
-features.forEach(([name,desc,action])=>{const el=document.createElement('article');el.className='feature';el.innerHTML=`<h3>${safe(name)}</h3><p>${safe(desc)}</p><button class="secondary">Open</button>`;el.querySelector('button').addEventListener('click',()=>featureClick(name,action));$('featureGrid').appendChild(el)});
-function loadProfile(){let p={};try{p=JSON.parse(localStorage.getItem('gjh_profile')||'{}')}catch(e){};if($('profileName'))$('profileName').value=p.name||'';if($('profileEmail'))$('profileEmail').value=p.email||'';if($('profileTitle'))$('profileTitle').value=p.title||'';if($('profileCountry'))$('profileCountry').value=p.country||'';if($('profileSkills'))$('profileSkills').value=p.skills||'';}
-function clearProfile(){try{localStorage.removeItem('gjh_profile')}catch(e){};$('profileForm').reset();$('profileMessage').textContent='Profile cleared from this device.';}
-if($('profileForm'))$('profileForm').addEventListener('submit',e=>{e.preventDefault();const p={name:$('profileName').value.trim(),email:$('profileEmail').value.trim(),title:$('profileTitle').value.trim(),country:$('profileCountry').value,skills:$('profileSkills').value.trim()};try{localStorage.setItem('gjh_profile',JSON.stringify(p));$('profileMessage').textContent='Profile saved on this device only.';}catch(err){$('profileMessage').textContent='Could not save profile in this browser.';}});
-$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});loadProfile();render(jobs);
+
+const $=id=>document.getElementById(id);
+
+const safe=(s)=>String(s).replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
+
+function getStore(k){
+try{return JSON.parse(localStorage.getItem(k)||'[]')}
+catch(e){return []}
+}
+
+function setStore(k,v){
+try{
+localStorage.setItem(k,JSON.stringify(v));
+return true
+}catch(e){return false}
+}
+
+function render(list){
+$('jobGrid').innerHTML=list.map(j=>`
+<article class="job">
+<span class="tag">${safe(j.cat)}</span>
+<h3>${safe(j.t)}</h3>
+<div class="company">${safe(j.c)}</div>
+<div class="meta">📍 ${safe(j.city)}, ${safe(j.co)}</div>
+<div class="small">Sample listing · Not verified</div>
+<div class="actions">
+<button onclick="viewJob(${j.id})">View Job</button>
+<button class="secondary" onclick="saveJob(${j.id})">☆ Save</button>
+</div>
+</article>
+`).join('')||'<p>No matching sample jobs. Try another search.</p>';
+
+$('count').textContent=list.length+' sample jobs';
+}
+
+function filterJobs(){
+const q=$('q').value.toLowerCase().trim();
+const co=$('country').value;
+const cat=$('category').value;
+
+render(jobs.filter(j=>
+(j.t+' '+j.c+' '+j.city+' '+j.cat).toLowerCase().includes(q)&&
+(!co||j.co===co)&&
+(!cat||j.cat===cat)
+));
+}
+
+function modal(title,body){
+$('modalBody').innerHTML=`<h2 id="modalTitle">${safe(title)}</h2>${body}`;
+$('modal').style.display='flex';
+}
+
+function closeModal(){
+$('modal').style.display='none';
+}
+
+function showInfo(title,msg){
+modal(title,`<p>${safe(msg)}</p><button onclick="closeModal()">Close</button>`);
+}
+
+function viewJob(id){
+const j=jobs.find(x=>x.id===id);
+if(!j)return;
+
+let r=getStore('gjh_recent').filter(x=>x!==id);
+r.unshift(id);
+setStore('gjh_recent',r.slice(0,10));
+
+modal(j.t,`
+<p><strong>${safe(j.c)}</strong></p>
+<p>📍 ${safe(j.city)}, ${safe(j.co)} · ${safe(j.cat)}</p>
+<p>${safe(j.desc)}</p>
+<p>
+<strong>Salary:</strong> ${safe(j.salary)}<br>
+<strong>Experience:</strong> ${safe(j.exp)}<br>
+<strong>Education:</strong> ${safe(j.edu)}
+</p>
+<div class="notice">This is a sample listing, not a verified vacancy. Applications are not connected.</div>
+<button onclick="showInfo('Apply Now','No application has been sent. Apply Now will work after a secure employer/application system is connected.')">Apply Now</button>
+<button class="secondary" onclick="saveJob(${j.id})">Save Job</button>
+<button class="warning" onclick="openReport(${j.id})">Report Job</button>
+`);
+}
+
+function saveJob(id){
+let a=getStore('gjh_saved');
+if(!a.includes(id))a.push(id);
+setStore('gjh_saved',a);
+
+showInfo('Saved Jobs',
+a.includes(id)
+?'This sample job is saved in this browser only.'
+:'Could not save this job in this browser.');
+}
+
+function openFeature(name){
+if(name==='Post a Job'){
+modal('Post a Job',`
+<p>This preview form does not publish a vacancy.</p>
+<form onsubmit="event.preventDefault();showInfo('Demo only','The job has not been submitted or published. Employer posting needs a secure backend and review workflow.')">
+<div class="form-grid">
+<input required placeholder="Company name">
+<input required placeholder="Job title">
+<select required>
+<option value="">Country</option>
+<option>Saudi Arabia</option>
+<option>UAE</option>
+<option>Qatar</option>
+<option>Kuwait</option>
+<option>Bahrain</option>
+<option>Oman</option>
+</select>
+<input placeholder="City">
+<input placeholder="Salary (optional)">
+<input placeholder="Experience (optional)">
+<textarea class="full" placeholder="Job description"></textarea>
+<button class="full" type="submit">Preview submit</button>
+</div>
+</form>
+`);
+}
+}
+
+function openReport(id){
+modal('Report Job / User',`
+<p>Demo report form. It will not be sent to an admin.</p>
+<form onsubmit="event.preventDefault();showInfo('Report not sent','Your report has not been transmitted. A secure backend is required to deliver reports to the site owner.')">
+<select required>
+<option value="">Choose reason</option>
+<option>Fake or scam job</option>
+<option>Expired vacancy</option>
+<option>Duplicate listing</option>
+<option>Misleading information</option>
+<option>Report a user</option>
+</select>
+<textarea required placeholder="Details (do not include sensitive information)"></textarea>
+<button type="submit">Preview report</button>
+</form>
+`);
+}
+
+function openCV(){
+modal('Simple CV Builder',`
+<p class="small">Browser-only draft. Do not enter passport, national ID or other sensitive details.</p>
+<form onsubmit="event.preventDefault();const d=new FormData(event.target);const txt='CV DRAFT\\nName: '+d.get('name')+'\\nEmail: '+d.get('email')+'\\nTarget role: '+d.get('role')+'\\nSkills: '+d.get('skills')+'\\nExperience: '+d.get('experience');const b=new Blob([txt],{type:'text/plain'});const a=document.createElement('a');const url=URL.createObjectURL(b);a.href=url;a.download='GulfJobsHub-CV-Draft.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showInfo('CV draft created','A basic text CV draft was generated on your device. This is not a secure account or cloud CV service.')">
+<div class="form-grid">
+<input name="name" required placeholder="Full name">
+<input name="email" type="email" placeholder="Email">
+<input class="full" name="role" placeholder="Target role">
+<textarea class="full" name="skills" placeholder="Skills"></textarea>
+<textarea class="full" name="experience" placeholder="Work experience"></textarea>
+<button class="full" type="submit">Create text CV</button>
+</div>
+</form>
+`);
+}
+
+function featureClick(name,action){
+if(action==='report'){
+openReport(null);
+}
+else if(action==='saved'){
+const ids=getStore('gjh_saved');
+showInfo('Saved Jobs',
+ids.length
+?jobs.filter(j=>ids.includes(j.id)).map(j=>j.t).join(', ')
+:'No jobs saved in this browser yet.');
+}
+else if(action==='recent'){
+const ids=getStore('gjh_recent');
+showInfo('Recently Viewed Jobs',
+ids.length
+?ids.map(id=>jobs.find(j=>j.id===id)?.t).filter(Boolean).join(', ')
+:'No jobs viewed yet.');
+}
+else if(action==='cv'){
+openCV();
+}
+else if(action==='help'){
+document.querySelector('#help').scrollIntoView({behavior:'smooth'});
+}
+else if(action==='seo'){
+showInfo('SEO & Social Sharing','Basic title, description and Open Graph metadata are included. This does not guarantee Google indexing or search ranking.');
+}
+else{
+showInfo(name,featureMessages[name]||'This feature is planned, but not active. Secure backend services are required before launch.');
+}
+}
+
+const featureMessages={
+'Job Seeker':'A full user account/profile system is not active yet.',
+'Company':'Company accounts and profiles are not active yet.',
+'Employer / Recruiter':'Employer dashboard, candidate access controls and applications need secure server-side authentication.',
+'Admin Dashboard':'The owner-only admin panel is not implemented as a secure live service. Never rely on a hidden page for admin security.',
+'Job Views & Analytics':'Real analytics are not connected. Browser-local counts are not reliable site-wide traffic data.',
+'Recruitment / Applications':'Applications, status tracking and employer shortlisting are not connected.',
+'Job Alerts':'Email alerts need a backend and email provider.',
+'6 Languages':'The six planned languages are English, Arabic, Urdu, Hindi, Bangla and Filipino. Full translations and language switching remain to be implemented.',
+'Rating & Reviews':'Company reviews need authenticated accounts, moderation and abuse prevention.',
+'Company Verification':'Company verification is not active. No company should be treated as verified from this prototype.',
+'Application Notifications':'Email/push notifications are not connected.',
+'Automatic Job Expiry':'Automatic expiry needs server-side scheduling and a shared database.',
+'Advanced Search Filters':'Keyword, country and category filters work on the sample listings. Salary, education, experience and job-type filters are not implemented yet.',
+'Scam Warnings & Duplicate Job Detection':'General scam advice is shown; automated detection is not active.'
+};
+
+features.forEach(([name,desc,action])=>{
+const el=document.createElement('article');
+el.className='feature';
+el.innerHTML=`<h3>${safe(name)}</h3><p>${safe(desc)}</p><button class="secondary">Open</button>`;
+el.querySelector('button').addEventListener('click',()=>featureClick(name,action));
+$('featureGrid').appendChild(el);
+});
+
+$('modal').addEventListener('click',e=>{
+if(e.target===$('modal'))closeModal();
+});
+
+render(jobs);
 </script>
-</body></html>
+</body>
+</html>
