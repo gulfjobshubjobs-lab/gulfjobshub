@@ -1,28 +1,22 @@
-GulfJobsHub responsive prototype package
-
-FILES
-- index.html: homepage with compact search, desktop and mobile layouts
-- jobs.html: separate job search page with keyword, country, city, category, experience, job type and optional salary field
-- job-details.html: full details, Back to Jobs, Apply Now, Share Job, Save Job and report preview
-- apply.html: application form preview; does not transmit data
-- profile.html: browser-only profile and saved demo jobs
-- employers.html: employer job draft preview; not published
-- admin-preview.html: public visual concept only; NOT secure and no real admin controls
-- job-guide.html: safety guide, country search links and browser-only rating preview
-- assets/site.css: responsive mobile/desktop styling
-- assets/site.js: sample data and prototype interactions
-- sitemap.xml and robots.txt: GitHub Pages URL set as the canonical site
-
-IMPORTANT LIMITS
-1. All job listings are sample demonstration content and are NOT real or verified vacancies. Remove them before launch or replace with verified job data and sources.
-2. This is a static GitHub Pages frontend. No secure login, shared database, real job applications, CV upload, email alerts, live analytics, employer verification, or secure admin permissions are implemented.
-3. Profile, saved jobs, employer drafts and demo ratings use browser localStorage on the current device only. Do not enter sensitive information.
-4. Google Search Console verification meta tag from the existing project was preserved. Do not delete it unless Search Console no longer needs it.
-5. Canonical URLs and sitemap point to https://gulfjobshubjobs-lab.github.io/gulfjobshub/ based on the currently selected primary URL. Confirm this before uploading if the primary domain choice has changed.
-6. admin-preview.html is intentionally marked noindex and must not be used for real administration.
+GulfJobsHub — Website Update Package
 
 UPLOAD
-Make a backup of the current GitHub repository first. Then upload/replace these files in the repository root, preserving any Google verification HTML file already in the repository. Commit to main and wait for GitHub Pages to publish. Do not upload this package to Netlify Drop.
+1. Extract this ZIP. It contains files to upload to the ROOT of the existing GitHub repository.
+2. In GitHub choose Add file > Upload files and select these extracted files.
+3. Keep the existing Google verification file google3ffb6ca04912510c.html in the repository. It is intentionally not included in this ZIP.
+4. Commit to main and wait for GitHub Pages to publish.
 
-NEXT GOOGLE WORK
-After publishing, open the homepage and test mobile/desktop, then inspect the homepage in Google Search Console, submit /sitemap.xml, and inspect the key static URLs. Request indexing only where available and do not repeatedly submit the same URL.
+WHAT CHANGED
+- Homepage: one main Search Jobs button; the search form is on jobs.html.
+- Search filters: Job Title/Keyword, Country, City, Job Category, Job Type. No Salary or Experience search filters.
+- Bottom navigation: Home, Profile, Saved, Menu. Menu is at the bottom-right and opens menu.html.
+- Added separate pages: menu.html, saved-jobs.html, applied-jobs.html, job-alerts.html, companies.html.
+- Profile and application pages have CV file-selection controls. File selection is local only and does NOT upload a CV online.
+- Language selector saves the choice and translates the main bottom navigation and Search Jobs button only. Most page content remains English.
+- Company job-post form includes company-entered title, location, category, type and description. It saves a local draft only; it does not publish jobs.
+
+IMPORTANT LIMITS
+- Current jobs are demonstration listings, not real or verified vacancies.
+- This is a static GitHub Pages frontend. Secure login, shared database, real applications, online CV storage, employer verification, email alerts, live analytics and secure admin controls require a secure backend.
+- Profile and saved jobs use browser localStorage on this device only. Do not enter sensitive personal information.
+- Sitemap points to https://gulfjobshubjobs-lab.github.io/gulfjobshub/. Confirm this remains the primary URL.

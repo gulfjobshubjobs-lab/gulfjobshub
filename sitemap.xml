@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/index.html</loc></url>
   <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/jobs.html</loc></url>
-  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/profile.html</loc></url>
-  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/employers.html</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/job-details.html</loc></url>
   <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/job-guide.html</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/companies.html</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/employers.html</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/profile.html</loc></url>
+  <url><loc>https://gulfjobshubjobs-lab.github.io/gulfjobshub/apply.html</loc></url>
 </urlset>
