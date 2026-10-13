@@ -35,6 +35,52 @@ const GJH = (() => {
   });
  }
 
- document.addEventListener('DOMContentLoaded',()=>{shell();setupHome();setupJobs();setupDetail();setupApply();setupProfile();setupEmployer();setupRatings();setupAdmin();setupGuide()});
+
+ function setupLanguageAndBottomNav(){
+  const langs={
+   en:{name:'English',home:'Home',jobs:'Jobs',saved:'Saved',applied:'Applied',alerts:'Job Alerts',profile:'Profile',search:'Search Jobs',guide:'Expatriate Guide',employer:'For Employers',post:'Post a Job',lang:'Language'},
+   ar:{name:'العربية',home:'الرئيسية',jobs:'الوظائف',saved:'المحفوظة',applied:'المقدّمة',alerts:'تنبيهات الوظائف',profile:'الملف الشخصي',search:'ابحث عن وظائف',guide:'دليل المغتربين',employer:'لأصحاب العمل',post:'أضف وظيفة',lang:'اللغة'},
+   ur:{name:'اردو',home:'ہوم',jobs:'نوکریاں',saved:'محفوظ',applied:'درخواستیں',alerts:'نوکری الرٹس',profile:'پروفائل',search:'نوکری تلاش کریں',guide:'تارکینِ وطن گائیڈ',employer:'آجرین',post:'نوکری پوسٹ کریں',lang:'زبان'},
+   hi:{name:'हिन्दी',home:'होम',jobs:'नौकरियाँ',saved:'सेव्ड',applied:'आवेदन',alerts:'जॉब अलर्ट',profile:'प्रोफ़ाइल',search:'नौकरी खोजें',guide:'प्रवासी गाइड',employer:'नियोक्ता',post:'नौकरी पोस्ट करें',lang:'भाषा'},
+   bn:{name:'বাংলা',home:'হোম',jobs:'চাকরি',saved:'সংরক্ষিত',applied:'আবেদন',alerts:'চাকরির সতর্কতা',profile:'প্রোফাইল',search:'চাকরি খুঁজুন',guide:'প্রবাসী গাইড',employer:'নিয়োগদাতা',post:'চাকরি পোস্ট',lang:'ভাষা'},
+   fil:{name:'Filipino',home:'Home',jobs:'Mga Trabaho',saved:'Naka-save',applied:'Na-applyan',alerts:'Job Alerts',profile:'Profile',search:'Maghanap ng Trabaho',guide:'Gabay sa Expat',employer:'Para sa Employer',post:'Mag-post ng Trabaho',lang:'Wika'}
+  };
+  let current='en'; try{current=localStorage.getItem('gjh_language')||'en'}catch(e){}
+  if(!langs[current])current='en';
+  const actions=document.querySelector('.header-actions');
+  if(actions&&!document.getElementById('gjhLanguage')){
+   const wrap=document.createElement('label');wrap.className='gjh-language-wrap';wrap.innerHTML='<span class="gjh-language-label">Language</span><select id="gjhLanguage" aria-label="Choose website language">'+Object.entries(langs).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('')+'</select>';
+   actions.insertBefore(wrap,actions.firstChild);
+  }
+  if(!document.getElementById('gjhBottomNav')){
+   document.body.insertAdjacentHTML('beforeend',`<nav class="gjh-bottom-nav" id="gjhBottomNav" aria-label="Quick navigation"><a data-nav="home" href="index.html"><span>⌂</span><small>Home</small></a><a data-nav="jobs" href="jobs.html"><span>⌕</span><small>Jobs</small></a><a data-nav="saved" href="profile.html#saved"><span>☆</span><small>Saved</small></a><a data-nav="applied" href="profile.html#applied"><span>✓</span><small>Applied</small></a><a data-nav="alerts" href="profile.html#alerts"><span>♧</span><small>Job Alerts</small></a><a data-nav="profile" href="profile.html"><span>♙</span><small>Profile</small></a></nav>`);
+  }
+  if(location.pathname.endsWith('/profile.html')||location.pathname==='profile.html'){
+   const main=document.querySelector('main');
+   if(main&&!document.getElementById('applied')){
+    const add=document.createElement('section');add.className='section gjh-extra-sections';add.innerHTML='<section class="panel" id="applied"><h2>Applied Jobs</h2><p class="small-muted">This section is ready for your application history. Applications are not submitted or tracked until a secure backend is connected.</p><div class="notice">No live applications are connected yet.</div></section><section class="panel" id="alerts" style="margin-top:16px"><h2>Job Alerts</h2><p class="small-muted">Choose a keyword to save a browser-only alert preference. No email will be sent yet.</p><form id="gjhAlertForm" class="form-grid"><div class="form-field"><label for="gjhAlertKeyword">Job title or keyword</label><input id="gjhAlertKeyword" maxlength="100" placeholder="e.g. Fiber Technician"></div><div class="form-field"><label for="gjhAlertCountry">Country</label><select id="gjhAlertCountry"><option value="">All GCC countries</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div><div class="form-field full"><button class="btn btn-primary" type="submit">Save Alert Preference</button><p id="gjhAlertResult" class="small-muted" aria-live="polite"></p></div></form></section>';
+    const savedSection=document.getElementById('saved'); if(savedSection)savedSection.insertAdjacentElement('afterend',add); else main.appendChild(add);
+    const alertForm=document.getElementById('gjhAlertForm');
+    if(alertForm){const pref=store.get('alertPreference',{});if(pref.keyword)document.getElementById('gjhAlertKeyword').value=pref.keyword;if(pref.country)document.getElementById('gjhAlertCountry').value=pref.country;alertForm.addEventListener('submit',e=>{e.preventDefault();store.set('alertPreference',{keyword:document.getElementById('gjhAlertKeyword').value.trim(),country:document.getElementById('gjhAlertCountry').value});document.getElementById('gjhAlertResult').textContent='Preference saved on this device only. Email alerts are not active yet.'})}
+   }
+  }
+  if(!document.getElementById('gjhNavStyle')){
+   const style=document.createElement('style');style.id='gjhNavStyle';style.textContent=`
+   .gjh-language-wrap{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:#52697d}.gjh-language-wrap select{max-width:112px;border:1px solid #dce5ec;background:#fff;border-radius:9px;padding:8px 7px;color:#102a43;font-size:12px;font-weight:700}
+   .gjh-bottom-nav{position:fixed;z-index:100;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;background:#fff;border-top:1px solid #dce5ec;box-shadow:0 -5px 20px rgba(16,42,67,.08);padding:6px 4px calc(6px + env(safe-area-inset-bottom));}
+   .gjh-bottom-nav a{display:flex;min-width:0;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:#52697d;border-radius:10px;padding:5px 1px;font-weight:800}.gjh-bottom-nav a span{font-size:19px;line-height:1.1;color:#0f8b82}.gjh-bottom-nav a small{font-size:10px;white-space:nowrap;line-height:1.25}.gjh-bottom-nav a.active{background:#e8f7f4;color:#08736c}.gjh-bottom-nav a.active span{color:#08736c}body{padding-bottom:76px}.gjh-extra-sections .panel{scroll-margin-bottom:90px}
+   @media(min-width:761px){.gjh-bottom-nav{left:50%;right:auto;transform:translateX(-50%);width:min(760px,calc(100% - 40px));border:1px solid #dce5ec;border-bottom:0;border-radius:16px 16px 0 0;padding:7px 12px calc(7px + env(safe-area-inset-bottom))}.gjh-language-wrap .gjh-language-label{display:inline}}
+   @media(max-width:420px){.gjh-language-wrap .gjh-language-label{display:none}.gjh-language-wrap select{max-width:90px}.gjh-bottom-nav a small{font-size:9px}}
+   `;document.head.appendChild(style);
+  }
+  function applyLanguage(code){current=langs[code]?code:'en';try{localStorage.setItem('gjh_language',current)}catch(e){};document.documentElement.lang=current;document.documentElement.dir=(current==='ar'||current==='ur')?'rtl':'ltr';const t=langs[current];const label=document.querySelector('.gjh-language-label');if(label)label.textContent=t.lang;const select=document.getElementById('gjhLanguage');if(select)select.value=current;
+   const map={home:t.home,jobs:t.jobs,saved:t.saved,applied:t.applied,alerts:t.alerts,profile:t.profile};document.querySelectorAll('#gjhBottomNav [data-nav]').forEach(a=>{const k=a.dataset.nav;const sm=a.querySelector('small');if(sm)sm.textContent=map[k]||k});
+   const navLinks=document.querySelectorAll('#mainNav a');navLinks.forEach(a=>{const href=a.getAttribute('href');if(href==='jobs.html')a.textContent=t.search;else if(href==='job-guide.html')a.textContent=t.guide;else if(href==='profile.html')a.textContent=t.profile;else if(href==='employers.html')a.textContent=t.employer});const post=document.querySelector('.employer-cta');if(post)post.textContent=t.post;const menu=document.getElementById('menuToggle');if(menu&&!menu.textContent.includes('✕'))menu.textContent=(current==='en'?'☰ Menu':t.jobs+' ☰');
+   const file=location.pathname.split('/').pop()||'index.html';const active=file==='index.html'?'home':file==='jobs.html'?'jobs':file==='profile.html'?(location.hash==='#saved'?'saved':location.hash==='#applied'?'applied':location.hash==='#alerts'?'alerts':'profile'):'';document.querySelectorAll('#gjhBottomNav [data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===active));
+  }
+  const select=document.getElementById('gjhLanguage');if(select)select.addEventListener('change',()=>applyLanguage(select.value));applyLanguage(current);
+ }
+
+ document.addEventListener('DOMContentLoaded',()=>{shell();setupHome();setupJobs();setupDetail();setupApply();setupProfile();setupEmployer();setupRatings();setupAdmin();setupGuide();setupLanguageAndBottomNav()});
  return {jobs,countries};
 })();
