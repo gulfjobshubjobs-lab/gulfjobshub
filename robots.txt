@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gulfjobshubjobs-lab.github.io/gulfjobshub/sitemap.xml
