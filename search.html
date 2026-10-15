@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search Gulf jobs by job title, country, and category on GulfJobsHub.">
+  <title>Search Jobs | GulfJobsHub</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #1769aa;
+      --blue-dark: #10558d;
+      --teal: #13a89e;
+      --ink: #203247;
+      --muted: #66788a;
+      --line: #dce5ee;
+      --surface: #ffffff;
+      --page: #f3f7fb;
+      --shadow: 0 12px 32px rgba(16, 42, 67, .09);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 15px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -.2px;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--teal);
+      color: white;
+      font-weight: 900;
+      font-size: 1.15rem;
+    }
+    .brand small {
+      display: block;
+      color: #c9d9e8;
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .3px;
+      margin-top: 1px;
+    }
+    .home-link {
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 9px;
+      padding: 9px 13px;
+      text-decoration: none;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .home-link:hover { background: rgba(255,255,255,.1); }
+    .hero {
+      background: linear-gradient(120deg, #102a43 0%, #174f78 70%, #137d86 100%);
+      color: white;
+      padding: 38px 20px 72px;
+    }
+    .hero-inner { max-width: 1120px; margin: auto; }
+    .eyebrow {
+      color: #9be5df;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      font-size: .75rem;
+    }
+    h1 {
+      margin: 8px 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.12;
+      letter-spacing: -.8px;
+    }
+    .hero p { margin: 0; color: #e0ebf4; max-width: 650px; }
+    main {
+      max-width: 1120px;
+      margin: -42px auto 0;
+      padding: 0 20px 42px;
+      position: relative;
+    }
+    .search-panel {
+      background: var(--surface);
+      border: 1px solid #e4ebf2;
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+    .field label {
+      display: block;
+      margin: 0 0 7px;
+      color: #34495e;
+      font-size: .87rem;
+      font-weight: 700;
+    }
+    input, select {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #cbd7e2;
+      border-radius: 9px;
+      background: white;
+      padding: 11px 12px;
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(23,105,170,.13);
+    }
+    .search-button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--blue);
+      color: white;
+      padding: 0 22px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .search-button:hover { background: var(--blue-dark); }
+    .form-note { margin: 13px 0 0; color: var(--muted); font-size: .82rem; }
+    .results-section { margin-top: 28px; }
+    .results-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    h2 { margin: 0; font-size: 1.35rem; color: var(--navy); }
+    #resultCount { color: var(--muted); font-size: .9rem; }
+    .empty-state {
+      background: white;
+      border: 1px dashed #c7d5e2;
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: grid;
+      place-items: center;
+      background: #e8f5f5;
+      color: #087f79;
+      font-size: 1.45rem;
+    }
+    .empty-state strong { display: block; color: var(--navy); font-size: 1.03rem; margin-bottom: 4px; }
+    .job-list { display: grid; gap: 13px; }
+    .job-card {
+      background: white;
+      border: 1px solid #e0e8ef;
+      border-radius: 13px;
+      padding: 19px 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 4px 14px rgba(16,42,67,.035);
+    }
+    .job-card h3 { margin: 0 0 5px; font-size: 1.08rem; color: var(--blue-dark); }
+    .job-card p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
+    .job-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+    .tag {
+      display: inline-block;
+      background: #eef5fb;
+      color: #315b7b;
+      border-radius: 20px;
+      padding: 4px 9px;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .view-link {
+      display: inline-block;
+      background: #e8f5f5;
+      color: #087f79;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-weight: 800;
+      font-size: .84rem;
+      white-space: nowrap;
+    }
+    .view-link:hover { background: #d7eeee; }
+    .bottom-actions {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+    .bottom-actions a {
+      display: inline-block;
+      border-radius: 9px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid #cad7e3;
+      background: white;
+      color: var(--navy);
+    }
+    .bottom-actions a.primary { background: var(--navy); border-color: var(--navy); color: white; }
+    footer { text-align: center; padding: 22px 16px; color: #718294; font-size: .82rem; }
+    @media (max-width: 850px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .search-button { width: 100%; }
+    }
+    @media (max-width: 540px) {
+      .topbar { padding: 12px 15px; }
+      .topbar-inner { align-items: flex-start; }
+      .brand { font-size: 1rem; }
+      .home-link { padding: 8px 10px; font-size: .82rem; }
+      .hero { padding: 30px 16px 64px; }
+      main { padding: 0 13px 30px; }
+      .search-panel { padding: 17px; border-radius: 13px; }
+      .form-grid { grid-template-columns: 1fr; gap: 12px; }
+      .job-card { padding: 16px; flex-direction: column; }
+      .view-link { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="GulfJobsHub home">
+        <span class="brand-mark">GJ</span>
+        <span>GulfJobsHub<small>Find your next job in the Gulf</small></span>
+      </a>
+      <a class="home-link" href="index.html">← Back to Home</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">GCC opportunities</div>
+      <h1>Search Jobs</h1>
+      <p>Find opportunities across Saudi Arabia, the UAE, Qatar, Kuwait, Bahrain and Oman.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="search-panel" aria-label="Job search form">
+      <form id="searchForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="keyword">Job Title / Keyword</label>
+            <input id="keyword" name="keyword" type="search" placeholder="e.g. Fiber Optic Technician" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="">All GCC Countries</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="United Arab Emirates">United Arab Emirates (UAE)</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Kuwait">Kuwait</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Oman">Oman</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category">Job Category</label>
+            <select id="category" name="category">
+              <option value="">All Categories</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Construction">Construction</option>
+              <option value="IT & Telecom">IT &amp; Telecom</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Driving & Transport">Driving &amp; Transport</option>
+              <option value="Hospitality">Hospitality</option>
+              <option value="Administration">Administration</option>
+              <option value="Sales & Marketing">Sales &amp; Marketing</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button class="search-button" type="submit">Search Jobs</button>
+        </div>
+        <p class="form-note">Search results will appear here only after you press “Search Jobs”.</p>
+      </form>
+    </section>
+
+    <section class="results-section" aria-live="polite">
+      <div class="results-heading">
+        <h2 id="resultsTitle">Search Results</h2>
+        <span id="resultCount"></span>
+      </div>
+      <div id="results" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">⌕</div>
+        <strong>Ready to find your next job?</strong>
+        Enter a job title or choose a country/category, then select <b>Search Jobs</b>.
+        <br>Your homepage jobs are kept separate and will not appear here automatically.
+      </div>
+    </section>
+
+    <div class="bottom-actions">
+      <a href="jobs.html">Browse All Jobs</a>
+      <a class="primary" href="index.html">Back to Home</a>
+    </div>
+  </main>
+
+  <footer>© <span id="year"></span> GulfJobsHub · GCC Jobs</footer>
+
+  <script>
+    (function () {
+      "use strict";
+      const form = document.getElementById("searchForm");
+      const results = document.getElementById("results");
+      const resultCount = document.getElementById("resultCount");
+      const resultsTitle = document.getElementById("resultsTitle");
+      const keywordInput = document.getElementById("keyword");
+      const countryInput = document.getElementById("country");
+      const categoryInput = document.getElementById("category");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // This page reads the published jobs page, rather than copying homepage jobs.
+      // No listings are shown until the visitor submits the search form.
+      let cachedJobs = null;
+
+      function normalize(value) {
+        return String(value || "").toLowerCase().replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+      }
+
+      function inferCountry(text) {
+        const t = normalize(text);
+        if (t.includes("saudi arabia") || /\bjeddah\b|\briyadh\b|\bdammam\b|\bmecca\b|\bmedina\b/.test(t)) return "Saudi Arabia";
+        if (t.includes("united arab emirates") || /\buae\b|\bdubai\b|\babudhabi\b|\babu dhabi\b|\bsharjah\b/.test(t)) return "United Arab Emirates";
+        if (t.includes("qatar") || /\bdoha\b/.test(t)) return "Qatar";
+        if (t.includes("kuwait")) return "Kuwait";
+        if (t.includes("bahrain") || /\bmanama\b/.test(t)) return "Bahrain";
+        if (t.includes("oman") || /\bmuscat\b/.test(t)) return "Oman";
+        return "";
+      }
+
+      function inferCategory(text) {
+        const t = normalize(text);
+        if (/fiber|fibre|telecom|network|it support|software|computer|cyber/.test(t)) return "IT & Telecom";
+        if (/construction|civil|mason|carpenter|welder|scaffold|plumber|electrician|site engineer/.test(t)) return "Construction";
+        if (/engineer|engineering|mechanical|electrical/.test(t)) return "Engineering";
+        if (/nurse|doctor|medical|healthcare|pharmac/.test(t)) return "Healthcare";
+        if (/driver|driving|transport|logistics|delivery/.test(t)) return "Driving & Transport";
+        if (/hotel|restaurant|chef|waiter|hospitality/.test(t)) return "Hospitality";
+        if (/admin|secretary|office assistant|data entry/.test(t)) return "Administration";
+        if (/sales|marketing|business development/.test(t)) return "Sales & Marketing";
+        return "Other";
+      }
+
+      function titleFromCard(card) {
+        const heading = card.querySelector("h1, h2, h3, h4, [class*='title'], [class*='Title']");
+        if (heading && heading.textContent.trim()) return heading.textContent.trim();
+        const link = card.querySelector("a[href]");
+        return link ? link.textContent.trim() : "";
+      }
+
+      function extractJobs(doc) {
+        const selectors = [
+          ".job-card", ".job-listing", ".job-item", ".job-post", ".job", 
+          "[class*='job-card']", "[class*='job-listing']", "[class*='job-item']",
+          "article"
+        ];
+        const found = [];
+        const seen = new Set();
+        selectors.forEach(function (selector) {
+          doc.querySelectorAll(selector).forEach(function (card) {
+            const title = titleFromCard(card);
+            const text = (card.innerText || card.textContent || "").replace(/\s+/g, " ").trim();
+            if (!title || text.length < 15 || title.length > 180) return;
+            const key = normalize(title + "|" + text.slice(0, 100));
+            if (seen.has(key)) return;
+            seen.add(key);
+            const link = card.querySelector("a[href]");
+            const href = link ? link.getAttribute("href") : "";
+            found.push({
+              title: title,
+              text: text,
+              href: href ? new URL(href, window.location.href).href : "jobs.html",
+              country: inferCountry(text),
+              category: inferCategory(title + " " + text)
+            });
+          });
+        });
+        return found;
+      }
+
+      async function loadJobs() {
+        if (cachedJobs !== null) return cachedJobs;
+        const response = await fetch("jobs.html", { cache: "no-store" });
+        if (!response.ok) throw new Error("Could not load jobs.html");
+        const source = await response.text();
+        const doc = new DOMParser().parseFromString(source, "text/html");
+        cachedJobs = extractJobs(doc);
+        return cachedJobs;
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (ch) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+        });
+      }
+
+      function showMessage(title, message) {
+        results.className = "empty-state";
+        results.innerHTML = '<div class="empty-icon" aria-hidden="true">⌕</div><strong>' +
+          escapeHtml(title) + '</strong>' + escapeHtml(message);
+        resultCount.textContent = "";
+      }
+
+      function renderJobs(jobs) {
+        if (!jobs.length) {
+          showMessage("No matching jobs found.", "Try a different keyword, country, or category. You can also browse all jobs.");
+          return;
+        }
+        results.className = "job-list";
+        results.innerHTML = jobs.map(function (job) {
+          const country = job.country || "GCC";
+          return '<article class="job-card"><div><h3>' + escapeHtml(job.title) +
+            '</h3><p>' + escapeHtml(job.text.slice(0, 260)) + (job.text.length > 260 ? "…" : "") +
+            '</p><div class="job-tags"><span class="tag">' + escapeHtml(country) +
+            '</span><span class="tag">' + escapeHtml(job.category) +
+            '</span></div></div><a class="view-link" href="' + escapeHtml(job.href) +
+            '">View Job →</a></article>';
+        }).join("");
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const keyword = normalize(keywordInput.value);
+        const country = countryInput.value;
+        const category = categoryInput.value;
+        if (!keyword && !country && !category) {
+          showMessage("Choose what you are looking for.", "Enter a job title/keyword or select a country or category before searching.");
+          return;
+        }
+
+        results.className = "empty-state";
+        results.innerHTML = '<div class="empty-icon" aria-hidden="true">…</div><strong>Searching jobs</strong>Loading the current listings…';
+        resultCount.textContent = "";
+        try {
+          const jobs = await loadJobs();
+          const matches = jobs.filter(function (job) {
+            const keywordMatch = !keyword || normalize(job.title + " " + job.text).includes(keyword);
+            const countryMatch = !country || normalize(job.country + " " + job.text).includes(normalize(country)) ||
+              (country === "United Arab Emirates" && /\buae\b|\bdubai\b|\babudhabi\b|\babu dhabi\b/.test(normalize(job.text)));
+            const categoryMatch = !category || job.category === category;
+            return keywordMatch && countryMatch && categoryMatch;
+          });
+          resultsTitle.textContent = "Search Results";
+          resultCount.textContent = matches.length + (matches.length === 1 ? " job found" : " jobs found");
+          if (!jobs.length) {
+            showMessage("Job listings could not be read.", "Please open Browse All Jobs to view the current listings. The search page has not changed your homepage or job data.");
+            return;
+          }
+          renderJobs(matches);
+          resultCount.textContent = matches.length + (matches.length === 1 ? " job found" : " jobs found");
+        } catch (error) {
+          showMessage("Unable to load job listings.", "Please check your connection and try again, or use Browse All Jobs.");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
