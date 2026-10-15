@@ -1,23 +1,22 @@
-GulfJobsHub - targeted website file fixes
+GulfJobsHub — Website Update Package
 
-Upload these files to the ROOT of the existing GitHub repository, replacing same-named files:
-- jobs.html
-- site.js
-- job-details.html
-- robots.txt
-- sitemap.xml
+UPLOAD
+1. Extract this ZIP. It contains files to upload to the ROOT of the existing GitHub repository.
+2. In GitHub choose Add file > Upload files and select these extracted files.
+3. Keep the existing Google verification file google3ffb6ca04912510c.html in the repository. It is intentionally not included in this ZIP.
+4. Commit to main and wait for GitHub Pages to publish.
 
-Do NOT delete or replace index.html or google3ffb6ca04912510c.html. The Google verification file is intentionally not included.
+WHAT CHANGED
+- Homepage: one main Search Jobs button; the search form is on jobs.html.
+- Search filters: Job Title/Keyword, Country, City, Job Category, Job Type. No Salary or Experience search filters.
+- Bottom navigation: Home, Profile, Saved, Menu. Menu is at the bottom-right and opens menu.html.
+- Added separate pages: menu.html, saved-jobs.html, applied-jobs.html, job-alerts.html, companies.html.
+- Profile and application pages have CV file-selection controls. File selection is local only and does NOT upload a CV online.
+- Language selector saves the choice and translates the main bottom navigation and Search Jobs button only. Most page content remains English.
+- Company job-post form includes company-entered title, location, category, type and description. It saves a local draft only; it does not publish jobs.
 
-What these fixes do:
-- Search results remain empty until the visitor presses Search Jobs; existing search behavior in site.js is retained.
-- The jobs page keeps its index,follow directive and canonical URL.
-- The job details page keeps its Back, Apply and Share behavior, with the report form hidden until requested.
-- robots.txt allows normal crawling and points Google to the sitemap.
-- sitemap.xml lists only public pages intended for indexing; it excludes utility pages such as saved-jobs.html and menu.html, plus files such as site.js and the Google verification file.
-
-Important SEO notes:
-- saved-jobs.html and menu.html have noindex by design in the current prototype. Saved Jobs is device-specific, and Menu is a navigation utility page; these are not necessarily errors.
-- robots.txt, site.js and the Google verification HTML file do not need to appear as indexed search results. URL is not on Google for those resource URLs is normally expected.
-- Do not submit repeated indexing requests for the same URL. This package does not require using Google Search Console or its daily quota.
-- Job data remains sample/demo content.
+IMPORTANT LIMITS
+- Current jobs are demonstration listings, not real or verified vacancies.
+- This is a static GitHub Pages frontend. Secure login, shared database, real applications, online CV storage, employer verification, email alerts, live analytics and secure admin controls require a secure backend.
+- Profile and saved jobs use browser localStorage on this device only. Do not enter sensitive personal information.
+- Sitemap points to https://gulfjobshubjobs-lab.github.io/gulfjobshub/. Confirm this remains the primary URL.
