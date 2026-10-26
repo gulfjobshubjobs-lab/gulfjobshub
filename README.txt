@@ -1,22 +1,32 @@
-GulfJobsHub — Website Update Package
+GulfJobsHub — Classifieds-Style Review Package
 
-UPLOAD
-1. Extract this ZIP. It contains files to upload to the ROOT of the existing GitHub repository.
-2. In GitHub choose Add file > Upload files and select these extracted files.
-3. Keep the existing Google verification file google3ffb6ca04912510c.html in the repository. It is intentionally not included in this ZIP.
-4. Commit to main and wait for GitHub Pages to publish.
+PURPOSE
+This is an offline review package for GulfJobsHub. The homepage has been refreshed with an original, classifieds-directory layout and GulfJobsHub branding, based on the general category-and-listing pattern used by classifieds websites. It does not copy another site's source code, logo, text, or assets.
 
-WHAT CHANGED
-- Homepage: one main Search Jobs button; the search form is on jobs.html.
-- Search filters: Job Title/Keyword, Country, City, Job Category, Job Type. No Salary or Experience search filters.
-- Bottom navigation: Home, Profile, Saved, Menu. Menu is at the bottom-right and opens menu.html.
-- Added separate pages: menu.html, saved-jobs.html, applied-jobs.html, job-alerts.html, companies.html.
-- Profile and application pages have CV file-selection controls. File selection is local only and does NOT upload a CV online.
-- Language selector saves the choice and translates the main bottom navigation and Search Jobs button only. Most page content remains English.
-- Company job-post form includes company-entered title, location, category, type and description. It saves a local draft only; it does not publish jobs.
+IMPORTANT — DO NOT UPLOAD WITHOUT OWNER REVIEW
+This ZIP has not been uploaded or committed to GitHub. The live GitHub Pages site remains unchanged. Review the package first and explicitly approve any future upload.
 
-IMPORTANT LIMITS
-- Current jobs are demonstration listings, not real or verified vacancies.
-- This is a static GitHub Pages frontend. Secure login, shared database, real applications, online CV storage, employer verification, email alerts, live analytics and secure admin controls require a secure backend.
-- Profile and saved jobs use browser localStorage on this device only. Do not enter sensitive personal information.
-- Sitemap points to https://gulfjobshubjobs-lab.github.io/gulfjobshub/. Confirm this remains the primary URL.
+CONTENTS
+- Existing project pages and shared JavaScript retained from the supplied review package.
+- Updated index.html with a classifieds-style home, search, country links, categories and sample listings.
+- Added category.html as a category-directory page and post-ad.html as a non-publishing ad preview form.
+- The legacy index-10.html address redirects visitors to index.html to avoid a second, outdated homepage.
+- Updated site.css with a responsive GulfJobsHub-branded style layer.
+- Google verification file, robots.txt and sitemap.xml preserved byte-for-byte from the supplied ZIP.
+
+CHECKS COMPLETED
+- JavaScript syntax check (node --check site.js): passed.
+- Local HTML link and fragment scan: passed after removing the obsolete duplicate homepage.
+- Google verification HTML, robots.txt and sitemap.xml compared byte-for-byte with the supplied source ZIP: unchanged.
+- ZIP integrity test: passed.
+- Browser screenshot/interactive visual test could not be completed in this environment; do not treat that as a passed browser test.
+
+CURRENT LIMITATIONS
+- Listings shown on the homepage are sample demonstrations, not real or verified vacancies.
+- Category pages outside jobs are directory previews only; no real ads or ad posting are connected.
+- This is a static front-end. Real accounts, applications, online CV storage, publishing, alerts and moderation require a secure backend.
+- Existing legacy job pages have been retained and share the updated brand colors, but have not all been rebuilt as complete classifieds workflows.
+- This is an offline review build, not a claim that the entire marketplace is production-ready. The tests do not replace a real browser/device review.
+
+PRIMARY SITE
+https://gulfjobshubjobs-lab.github.io/gulfjobshub/
