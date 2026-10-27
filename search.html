@@ -4,62 +4,19 @@
 <meta charset="utf-8">
 <meta name="google-site-verification" content="lcEnQqlHszcTuVWWiz9zt9KWniLqSTNprz-uhc9ByJg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Search Gulf Jobs & Classifieds | GulfJobsHub</title>
-<meta name="description" content="Search job listings across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.">
+<title>Find Jobs | GulfJobsHub</title>
+<meta name="description" content="Find Gulf job listings by keyword, country, city, category and job type. Current listings are demo data, not verified vacancies.">
 <meta name="robots" content="index,follow">
-<meta name="theme-color" content="#0b5e8e">
+<meta name="theme-color" content="#102a43">
+<meta property="og:title" content="Find Jobs | GulfJobsHub">
+<meta property="og:description" content="Find Gulf job listings by keyword, country, city, category and job type. Current listings are demo data, not verified vacancies.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://gulfjobshubjobs-lab.github.io/gulfjobshub/search.html">
 <link rel="stylesheet" href="site.css">
 <script defer src="site.js"></script>
+
 </head>
-<body class="classified-search-page">
-<section class="page-hero">
-  <div class="container">
-    <div class="crumbs"><a href="index.html">Home</a> / Search Jobs</div>
-    <h1>Search Gulf Jobs</h1>
-    <p>Find opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.</p>
-  </div>
-</section>
-<main class="container section">
-  <div class="search-page-layout">
-    <aside class="search-sidebar">
-      <form id="filterForm" class="filter-box">
-        <h3>Filter listings</h3>
-        <div class="form-field">
-          <label for="q">Keyword or title</label>
-          <input id="q" name="q" type="search" placeholder="e.g. Engineer, Nurse">
-        </div>
-        <div class="form-field">
-          <label for="country">Country</label>
-          <select id="country" name="country">
-            <option value="">All GCC countries</option>
-            <option>Saudi Arabia</option>
-            <option>UAE</option>
-            <option>Qatar</option>
-            <option>Kuwait</option>
-            <option>Bahrain</option>
-            <option>Oman</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="city">City</label>
-          <select id="city" name="city">
-            <option value="">All cities</option>
-          </select>
-        </div>
-        <div class="filter-actions">
-          <button class="btn btn-primary btn-sm" type="submit">Search</button>
-          <button class="btn btn-outline btn-sm" type="button" id="clearAll">Clear</button>
-        </div>
-      </form>
-    </aside>
-    <section class="search-results-area">
-      <div class="results-head">
-        <h2 id="resultsHeading">Search results</h2>
-        <span id="resultsCount" class="muted"></span>
-      </div>
-      <div id="jobResults" class="job-list" aria-live="polite"></div>
-    </section>
-  </div>
-</main>
+<body>
+<section class="page-hero"><div class="container"><div class="crumbs"><a href="index.html">Home</a> / Search Jobs</div><h1>Find Your Next Job</h1><p>Filter the sample listings by job title, country, city, category and job type. The current listings are demonstrations only.</p></div></section><main class="container section"><div class="layout-two"><aside class="panel filters"><button class="btn btn-outline filter-toggle" id="filterToggle" type="button" aria-expanded="false" style="width:100%;display:none">Filters <span>＋</span></button><div id="filterContent" class="filter-content open"><h3>Filter opportunities</h3><form id="filterForm"><div class="filter-group"><label for="q">Keyword or job title</label><input id="q" name="q" placeholder="Search jobs"></div><div class="filter-group"><label for="country">Country</label><select id="country" name="country"><option value="">All GCC countries</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div><div class="filter-group"><label for="city">City</label><input id="city" name="city" placeholder="Any city"></div><div class="filter-group"><label for="category">Category</label><select id="category" name="category"><option value="">All categories</option><option>IT & Software</option><option>Telecom / Fiber Optics</option><option>Engineering & Construction</option><option>Healthcare</option><option>Sales & Marketing</option><option>Hospitality & Hotels</option><option>Skilled Trades & Maintenance</option><option>Logistics & Driving</option><option>Administration</option><option>Finance</option></select></div><div class="filter-group"><label for="type">Job type</label><select id="type" name="type"><option value="">Any job type</option><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Temporary</option><option>Remote</option></select></div><div class="button-row"><button class="btn btn-primary" type="submit">Search Jobs</button><button class="btn btn-outline" id="clearAll" type="button">Clear</button></div></form></div></aside><section><div class="results-toolbar"><div><h2>Matching jobs</h2><p id="resultsCount" aria-live="polite"></p></div><span class="pill">Sample data</span></div><div class="job-list" id="jobResults"></div><div class="notice notice-red">All current listings are examples. Do not treat them as vacancies or submit personal documents. Real job publishing and search data require a backend.</div></section></div></main>
 </body>
 </html>
