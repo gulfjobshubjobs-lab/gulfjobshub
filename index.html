@@ -2,18 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="google-site-verification" content="lcEnQqlHszcTuVWWiz9zt9KWniLqSTNprz-uhc9ByJg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GulfJobsHub - GCC Classifieds</title>
+<title>GulfJobsHub - GCC Classifieds & Jobs</title>
+<meta name="description" content="Explore local listings and opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.">
 <link rel="stylesheet" href="site.css">
 <script defer src="site.js"></script>
 </head>
 <body>
-<main class="container section">
-  <div class="panel" style="padding:25px;background:#fff;border-radius:12px;border:1px solid #dce5eb;">
-    <h1>GulfJobsHub</h1>
-    <p>Explore verified classifieds and jobs across GCC countries.</p>
-    <a class="btn btn-primary" href="index.html">Back to Home</a>
+<section class="classified-hero">
+  <div class="container classified-hero-copy">
+    <span class="classified-kicker">GULF CLASSIFIEDS</span>
+    <h1>Your Gulf. Your opportunities.</h1>
+    <p>Explore jobs and local listings across six GCC countries — all in one place.</p>
+    <form id="homeSearchForm" action="search.html" method="GET" class="classified-search">
+      <div class="field" id="homeKeyword">
+        <label for="q" class="sr-only">Job title, keyword or company</label>
+        <input id="q" name="q" type="search" placeholder="Job title, keyword or company">
+      </div>
+      <div class="field" id="homeCountry">
+        <label for="country" class="sr-only">Country</label>
+        <select id="country" name="country">
+          <option value="">All Gulf countries</option>
+          <option value="Saudi Arabia">Saudi Arabia</option>
+          <option value="UAE">UAE</option>
+          <option value="Qatar">Qatar</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Bahrain">Bahrain</option>
+          <option value="Oman">Oman</option>
+        </select>
+      </div>
+      <div class="field" id="homeCity" style="display:none;">
+        <select id="city" name="city">
+          <option value="">All cities</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <div class="classified-country-links">
+      <a href="search.html?country=Saudi+Arabia">Saudi Arabia</a>
+      <a href="search.html?country=UAE">UAE</a>
+      <a href="search.html?country=Qatar">Qatar</a>
+      <a href="search.html?country=Kuwait">Kuwait</a>
+      <a href="search.html?country=Bahrain">Bahrain</a>
+      <a href="search.html?country=Oman">Oman</a>
+    </div>
   </div>
+</section>
+<main class="container classified-main">
+  <section class="classified-section" id="categories">
+    <div class="classified-section-heading">
+      <div>
+        <span class="section-kicker">BROWSE THE DIRECTORY</span>
+        <h2>Explore categories</h2>
+        <p>Choose a section to start browsing.</p>
+      </div>
+    </div>
+    <div class="classified-categories">
+      <a class="classified-category" href="search.html?category=Jobs">
+        <span class="category-symbol">💼</span>
+        <div>
+          <strong>Jobs</strong>
+          <small>Find work across the Gulf</small>
+        </div>
+        <span class="category-arrow">›</span>
+      </a>
+      <a class="classified-category" href="search.html?category=Housing">
+        <span class="category-symbol">🏠</span>
+        <div>
+          <strong>Housing & Property</strong>
+          <small>Rentals and shared rooms</small>
+        </div>
+        <span class="category-arrow">›</span>
+      </a>
+      <a class="classified-category" href="search.html?category=Services">
+        <span class="category-symbol">🛠️</span>
+        <div>
+          <strong>Services & Trades</strong>
+          <small>Local professional services</small>
+        </div>
+        <span class="category-arrow">›</span>
+      </a>
+      <a class="classified-category" href="search.html?category=Motors">
+        <span class="category-symbol">🚗</span>
+        <div>
+          <strong>Motors & Vehicles</strong>
+      <small>Cars and transport</small>
+        </div>
+        <span class="category-arrow">›</span>
+      </a>
+    </div>
+  </section>
+  <section class="classified-section listings-section">
+    <div class="classified-section-heading">
+      <div>
+        <span class="section-kicker">FEATURED LISTINGS</span>
+        <h2>Recent opportunities</h2>
+        <p>Sample listings across popular GCC hubs.</p>
+      </div>
+      <a class="classified-view-all" href="search.html">View all listings ›</a>
+    </div>
+    <div id="homeJobs" class="job-grid"></div>
+    <div class="classified-disclaimer">
+      <strong>Important Notice:</strong> GulfJobsHub is a classifieds discovery platform. Preview listings shown here are for demonstration. Always verify employer credentials and legal work requirements before proceeding.
+    </div>
+  </section>
 </main>
 </body>
 </html>
