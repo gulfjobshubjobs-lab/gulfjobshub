@@ -39,3 +39,12 @@ body{background:#f4f7f9;color:#20384b}
 @media(min-width:681px){.classified-search{grid-template-columns:minmax(0,1fr) minmax(180px,230px) minmax(110px,150px)}}
 .classified-search{grid-template-columns:minmax(0,1fr) minmax(180px,230px) minmax(110px,150px)}
 @media(max-width:680px){.classified-search{grid-template-columns:minmax(0,1fr)}.classified-search #homeKeyword,.classified-search #homeCountry,.classified-search button[type="submit"]{grid-column:1;grid-row:auto}}
+
+/* Language Selector & Translation Clean Styling */
+.lang-selector-wrap { display: inline-flex; align-items: center; margin-left: 10px; margin-right: 10px; }
+.lang-select { background: #fff; border: 1px solid #c8d7e1; border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 700; color: #174765; cursor: pointer; outline: none; }
+.lang-select:hover { border-color: #087eb0; }
+body { top: 0 !important; }
+.goog-te-banner-frame { display: none !important; }
+#goog-gt-tt { display: none !important; }
+.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }

@@ -8,25 +8,74 @@ const GJH = (() => {
  {id:'sample-05',title:'Sales Executive',company:'Example Trading Group',city:'Kuwait City',country:'Kuwait',category:'Sales & Marketing',type:'Full-time',experience:'1–3 years',salary:'Not provided',education:'Relevant qualification preferred',posted:'Sample listing',expires:'Not provided',description:'Demonstration listing for sales roles. Company identity and vacancy are not verified.',responsibilities:['Build and maintain customer relationships.','Prepare sales updates and follow up leads.','Coordinate with internal sales teams.'],requirements:['Customer-facing or sales experience.','Clear communication and follow-up skills.','Targets and compensation to be confirmed.']},
  {id:'sample-06',title:'Electrical Maintenance Technician',company:'Example Industrial Services',city:'Manama',country:'Bahrain',category:'Skilled Trades & Maintenance',type:'Full-time',experience:'2–5 years',salary:'Not provided',education:'Technical diploma or trade certificate',posted:'Sample listing',expires:'Not provided',description:'Sample listing to demonstrate the job-details experience. It is not a verified job opening.',responsibilities:['Perform routine maintenance checks.','Record faults and completed maintenance.','Follow lockout and site-safety procedures.'],requirements:['Relevant technical qualification or trade experience.','Safe working practices.','Specific certifications to be confirmed with employer.']}
  ];
- const $=(id,root=document)=>root.getElementById(id); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const $=(id,root=document)=>root.getElementById(id); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]);
  const store={get(k,def=null){try{const x=localStorage.getItem('gjh_'+k);return x===null?def:JSON.parse(x)}catch{return def}},set(k,v){try{localStorage.setItem('gjh_'+k,JSON.stringify(v));return true}catch{return false}},remove(k){try{localStorage.removeItem('gjh_'+k)}catch{}}};
  function query(){return new URLSearchParams(location.search)} function getJob(id){return jobs.find(j=>j.id===id)||jobs[0]}
  function logo(company){return esc(company.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase())}
  function card(j,mode='grid'){return `<article class="job-card"><div class="job-top"><div class="job-logo" aria-hidden="true">${logo(j.company)}</div><span class="tag tag-muted">Sample</span></div><div><h3>${esc(j.title)}</h3><div class="company">${esc(j.company)}</div></div><div class="job-meta"><span>⌖ ${esc(j.city)}, ${esc(j.country)}</span><span>◷ ${esc(j.type)}</span></div><p class="job-snippet">${esc(j.description)}</p><div class="job-foot"><span class="salary">${esc(j.salary)}</span><a class="btn btn-primary btn-sm" href="job-details.html?id=${encodeURIComponent(j.id)}">View Job Details</a></div></article>`}
- function header(){return `<header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="GulfJobsHub home"><span class="brand-mark">GJH</span><span class="brand-divider"></span><span><span class="brand-name">GulfJobsHub</span><span class="brand-tag" style="display:block">GULF CLASSIFIEDS</span></span></a><nav class="classified-top-nav" aria-label="Main navigation"><a href="index.html#categories">Categories</a><a href="search.html">Jobs</a><a href="category.html?category=Housing">Housing</a><a href="category.html?category=Services">Services</a></nav><a class="btn btn-primary classified-post-link" href="post-ad.html">Post Free Ad</a></div></header>`}
+ function header(){
+  return `<header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="GulfJobsHub home"><span class="brand-mark">GJH</span><span class="brand-divider"></span><span><span class="brand-name">GulfJobsHub</span><span class="brand-tag" style="display:block">GULF CLASSIFIEDS</span></span></a><nav class="classified-top-nav" aria-label="Main navigation"><a href="index.html#categories">Categories</a><a href="search.html">Jobs</a><a href="category.html?category=Housing">Housing</a><a href="category.html?category=Services">Services</a></nav><div class="lang-selector-wrap"><select id="gjhLangSelect" class="lang-select" aria-label="Select Language"><option value="en">English</option><option value="ur">Urdu (اردو)</option><option value="ar">Arabic (العربية)</option><option value="hi">Hindi (हिन्दी)</option><option value="tl">Tagalog (Filipino)</option><option value="ml">Malayalam (മലയാളം)</option></select></div><div id="google_translate_element" style="display:none;"></div><a class="btn btn-primary classified-post-link" href="post-ad.html">Post Free Ad</a></div></header>`
+ }
  function footer(){return `<footer class="site-footer classified-footer"><div class="container"><div class="classified-footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">GJH</span><span class="brand-divider" style="background:#ffffff3b"></span><span><span class="brand-name footer-brand">GulfJobsHub</span><span class="brand-tag" style="display:block;color:#c1d6e3">GULF CLASSIFIEDS</span></span></a><p class="footer-desc">Browse local listings and opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman. Verify listings before you act.</p></div><div class="footer-col"><h4>Browse</h4><a href="index.html#categories">All categories</a><a href="search.html">Jobs</a><a href="category.html?category=Housing">Housing</a><a href="category.html?category=Services">Services</a></div><div class="footer-col"><h4>Community</h4><a href="post-ad.html">Post a free ad</a><a href="job-guide.html#safety">Safety guidance</a><a href="companies.html">Companies</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> GulfJobsHub. All rights reserved.</span><span>Preview listings are not verified. Real ad publishing is not connected.</span></div></div></footer>`}
- function shell(){document.body.insertAdjacentHTML('afterbegin',header());document.body.insertAdjacentHTML('beforeend',footer());$('year')&&($('year').textContent=new Date().getFullYear());setupBottomNav();}
+ 
+ function initTranslation(){
+  if(!document.getElementById('gt-script')){
+   const s=document.createElement('script');
+   s.id='gt-script';
+   s.src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+   document.body.appendChild(s);
+  }
+  window.googleTranslateElementInit=function(){
+   new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ur,ar,hi,tl,ml',
+    autoDisplay: false
+   }, 'google_translate_element');
+  };
+
+  const sel=$('gjhLangSelect');
+  if(sel){
+   // Read saved language or default to en
+   const savedLang = store.get('lang', 'en');
+   sel.value = savedLang;
+   
+   sel.addEventListener('change', (e)=>{
+    const lang = e.target.value;
+    store.set('lang', lang);
+    const gtCombo = document.querySelector('.goog-te-combo');
+    if(gtCombo){
+     gtCombo.value = lang;
+     gtCombo.dispatchEvent(new Event('change'));
+    } else {
+     // Cookie fallback for Google Translate
+     document.cookie = "googtrans=/en/" + lang + ";path=/";
+     location.reload();
+    }
+   });
+
+   // Sync back on load
+   setTimeout(()=>{
+    const gtCombo = document.querySelector('.goog-te-combo');
+    if(gtCombo && savedLang !== 'en'){
+     gtCombo.value = savedLang;
+     gtCombo.dispatchEvent(new Event('change'));
+    }
+   }, 1000);
+  }
+ }
+
+ function shell(){document.body.insertAdjacentHTML('afterbegin',header());document.body.insertAdjacentHTML('beforeend',footer());$('year')&&($('year').textContent=new Date().getFullYear());initTranslation();}
  function setupHome(){const grid=$('homeJobs');if(grid)grid.innerHTML=jobs.slice(0,6).map(j=>card(j)).join('');}
  function setupJobs(){
   const grid=$('jobResults'); if(!grid)return;
   const p=query(), isSearch=location.pathname.endsWith('/search.html')||location.pathname==='search.html';
-  ['q','country','city','category','type'].forEach(k=>{const el=$(k);if(el&&p.has(k))el.value=p.get(k)});
+  ['q','country','city'].forEach(k=>{const el=$(k);if(el&&p.has(k))el.value=p.get(k)});
   const filters=$('filterForm');
-  const promptResults=()=>{grid.innerHTML='<div class="empty-state"><h3>Ready to find your next job?</h3><p>Choose one or more filters, then select Search Jobs.</p></div>';const count=$('resultsCount');if(count)count.textContent='';};
+  const promptResults=()=>{grid.innerHTML='<div class="empty-state"><h3>Ready to find your next job?</h3><p>Enter a keyword, country or city, then select Search.</p></div>';const count=$('resultsCount');if(count)count.textContent='';};
   const render=()=>{
-   const q=($('q')?.value||'').trim().toLowerCase(),country=$('country')?.value||'',city=($('city')?.value||'').trim().toLowerCase(),cat=$('category')?.value||'',type=$('type')?.value||'';
-   const found=jobs.filter(j=>(!q||(j.title+' '+j.company+' '+j.description+' '+j.category).toLowerCase().includes(q))&&(!country||j.country===country)&&(!city||j.city.toLowerCase().includes(city))&&(!cat||j.category===cat)&&(!type||j.type.toLowerCase()===type.toLowerCase()));
-   grid.innerHTML=found.length?found.map(j=>card(j,'list')).join(''):`<div class="empty-state"><h3>No matching listings</h3><p>Try changing your keywords or filters. The available demo data contains sample listings only.</p><button class="btn btn-outline" type="button" id="clearFilters">Clear filters</button></div>`;
+   const q=($('q')?.value||'').trim().toLowerCase(),country=$('country')?.value||'',city=($('city')?.value||'').trim().toLowerCase();
+   const found=jobs.filter(j=>(!q||(j.title+' '+j.company+' '+j.description+' '+j.category).toLowerCase().includes(q))&&(!country||j.country===country)&&(!city||j.city.toLowerCase().includes(city)));
+   grid.innerHTML=found.length?found.map(j=>card(j,'list')).join(''):`<div class="empty-state"><h3>No matching listings</h3><p>No job listing matches your search criteria. Please try different keywords or location filters.</p><button class="btn btn-outline btn-sm" type="button" id="clearFilters">Clear filters</button></div>`;
    const count=$('resultsCount');if(count)count.textContent=`${found.length} sample ${found.length===1?'listing':'listings'}`;
    $('clearFilters')?.addEventListener('click',()=>{filters?.reset();if(isSearch)promptResults();else render()});
   };
@@ -35,33 +84,8 @@ const GJH = (() => {
    if(!isSearch)filters.addEventListener('change',render);
    $('clearAll')?.addEventListener('click',()=>{filters.reset();if(isSearch)promptResults();else render()});
   }
-  if(isSearch&&!['q','country','city','category','type'].some(k=>p.has(k)&&p.get(k)))promptResults();else render();
-  const toggle=$('filterToggle'),contents=$('filterContent');
-  if(toggle&&contents)toggle.addEventListener('click',()=>{const open=contents.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
+  if(isSearch&&!['q','country','city'].some(k=>p.has(k)&&p.get(k)))promptResults();else render();
  }
- function setupDetail(){const j=getJob(query().get('id'));const el=$('jobDetail');if(!el)return;const saved=(store.get('saved',[])||[]).includes(j.id);el.innerHTML=`<div class="panel"><div class="detail-title"><div class="job-logo">${logo(j.company)}</div><div><span class="tag tag-muted">Sample listing · Not verified</span><h1 style="margin-top:8px">${esc(j.title)}</h1><div class="company">${esc(j.company)}</div></div></div><div class="job-meta" style="margin-top:15px"><span>⌖ ${esc(j.city)}, ${esc(j.country)}</span><span>◷ ${esc(j.type)}</span></div><div class="notice notice-red"><strong>Demo listing:</strong> This is example content, not a verified vacancy. No employer has submitted or approved this job.</div><div class="detail-section"><h2>Job Description</h2><p>${esc(j.description)}</p></div><div class="detail-section"><h2>Key Responsibilities</h2><ul>${j.responsibilities.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="detail-section"><h2>Requirements</h2><ul>${j.requirements.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="detail-section"><h2>Important information</h2><p>Salary, visa terms, employer identity and closing date have not been verified for this demonstration. Confirm all terms directly with a legitimate employer before sharing personal documents.</p></div><div class="button-row" style="margin-top:24px"><a class="btn btn-primary" href="apply.html?id=${encodeURIComponent(j.id)}">Apply Now</a><button class="btn btn-outline" id="shareJob" type="button">↗ Share Job</button><button class="btn btn-soft" id="saveJob" type="button">${saved?'★ Saved':'☆ Save Job'}</button><button class="btn btn-danger" id="reportJob" type="button">Report Job</button></div><div id="detailMessage" aria-live="polite"></div></div>`;const side=$('jobSummary');if(side)side.innerHTML=`<div class="panel sticky-side"><h3 style="margin:0;color:var(--navy)">Job summary</h3><div class="side-stat"><span>Salary</span><strong>${esc(j.salary)}</strong></div><div class="side-stat"><span>Education</span><strong>${esc(j.education)}</strong></div><div class="side-stat"><span>Job type</span><strong>${esc(j.type)}</strong></div><div class="side-stat"><span>Closing date</span><strong>${esc(j.expires)}</strong></div><p class="small-muted">Sample data only. Not a live job offer.</p><a class="btn btn-primary" style="width:100%" href="apply.html?id=${encodeURIComponent(j.id)}">Apply Now</a></div>`;const msg=$('detailMessage');$('saveJob')?.addEventListener('click',()=>{let a=store.get('saved',[])||[];a=a.includes(j.id)?a.filter(x=>x!==j.id):[...a,j.id];store.set('saved',a);$('saveJob').textContent=a.includes(j.id)?'★ Saved':'☆ Save Job';if(msg)msg.innerHTML=`<div class="status-box">${a.includes(j.id)?'Saved in this browser only.':'Removed from this browser’s saved list.'}</div>`});$('shareJob')?.addEventListener('click',async()=>{const data={title:j.title+' | GulfJobsHub',text:`${j.title} at ${j.company} — sample listing on GulfJobsHub`,url:location.href};try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard){await navigator.clipboard.writeText(data.url);if(msg)msg.innerHTML='<div class="status-box">Job link copied.</div>'}else prompt('Copy this job link',data.url)}catch(e){if(e.name!=='AbortError'&&msg)msg.innerHTML='<div class="notice">Could not open share menu. Copy the page URL to share.</div>'}});$('reportJob')?.addEventListener('click',()=>{const report=$('reportFormWrap');if(report){report.classList.remove('hidden');report.scrollIntoView({behavior:'smooth',block:'center'})}});$('reportForm')?.addEventListener('submit',e=>{e.preventDefault();if(msg)msg.innerHTML='<div class="notice">Report preview only. It has not been sent to an admin because a secure reporting backend is not connected.</div>';e.target.reset()})}
- function setupApply(){const cv=$('cvFile');if(cv)cv.addEventListener('change',()=>{const f=cv.files&&cv.files[0];const out=$('cvFileName');if(out)out.textContent=f?`Selected: ${f.name} (${Math.ceil(f.size/1024)} KB). Not uploaded online.`:'No CV selected.'});const j=getJob(query().get('id'));const title=$('applyJobTitle');if(title)title.textContent=j.title;const company=$('applyCompany');if(company)company.textContent=j.company+' · '+j.city+', '+j.country;const form=$('applyForm');if(form)form.addEventListener('submit',e=>{e.preventDefault();const result=$('applyResult');if(result){result.innerHTML='<div class="notice notice-red"><strong>Demo only — application not sent.</strong><br>Your information has not been transmitted or saved to an employer account. A secure backend must be connected before real applications are accepted.</div>';result.scrollIntoView({behavior:'smooth',block:'center'})}})}
- function setupProfile(){const form=$('profileForm');const p=store.get('profile',{});if(form){['name','email','target','country','city','skills','experience'].forEach(k=>{const el=form.elements[k];if(el&&p[k])el.value=p[k]});form.addEventListener('submit',e=>{e.preventDefault();const out={};['name','email','target','country','city','skills','experience'].forEach(k=>{if(form.elements[k])out[k]=form.elements[k].value.trim()});store.set('profile',out);$('profileResult').innerHTML='<div class="status-box">Profile saved in this browser on this device only. It is not an online account and is not synced to other devices.</div>'})}const clear=$('clearProfile');if(clear)clear.addEventListener('click',()=>{store.remove('profile');if(form)form.reset();if($('profileResult'))$('profileResult').innerHTML='<div class="status-box">Browser-only profile cleared.</div>'});const cv=$('profileCv');if(cv)cv.addEventListener('change',()=>{const f=cv.files&&cv.files[0];const out=$('profileCvName');if(out)out.textContent=f?`Selected: ${f.name} (${Math.ceil(f.size/1024)} KB). Not uploaded online.`:'No CV selected.'})}
- function setupEmployer(){const form=$('employerForm');if(form)form.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(form);const obj={company:fd.get('company'),title:fd.get('title'),country:fd.get('country'),city:fd.get('city'),category:fd.get('category'),type:fd.get('type'),description:fd.get('description'),created:new Date().toISOString()};const drafts=store.get('employerDrafts',[])||[];drafts.unshift(obj);store.set('employerDrafts',drafts);$('employerResult').innerHTML='<div class="notice notice-red"><strong>Draft saved locally only.</strong><br>This vacancy has not been published, reviewed, or sent to GulfJobsHub. Employer accounts and job publishing need a secure backend.</div>';form.reset()});const list=$('employerDraftList');if(list){const drafts=store.get('employerDrafts',[])||[];list.innerHTML=drafts.length?drafts.map(d=>`<div class="panel"><strong>${esc(d.title)}</strong><div class="small-muted">${esc(d.company)} · ${esc(d.city)}, ${esc(d.country)}</div><span class="pill">Local draft — not published</span></div>`).join(''):'<p class="small-muted">No local drafts yet.</p>'}}
- function setupRatings(){let selected=0;document.querySelectorAll('[data-rating]').forEach(btn=>btn.addEventListener('click',()=>{selected=Number(btn.dataset.rating);document.querySelectorAll('[data-rating]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.rating)===selected));const label=$('ratingValue');if(label)label.textContent=`Selected: ${selected} out of 5` }));$('ratingForm')?.addEventListener('submit',e=>{e.preventDefault();if(!selected){$('ratingResult').innerHTML='<div class="notice">Please choose a rating first.</div>';return}const list=store.get('ratings',[])||[];list.push({rating:selected,feedback:$('ratingFeedback')?.value||'',date:new Date().toISOString()});store.set('ratings',list);$('ratingResult').innerHTML='<div class="notice notice-blue">Thank you. Your rating is stored in this browser only and has not been sent to the site owner or published publicly.</div>';e.target.reset();selected=0;document.querySelectorAll('[data-rating]').forEach(b=>b.classList.remove('selected'));if($('ratingValue'))$('ratingValue').textContent='No rating selected'})}
- function setupAdmin(){const jobsBody=$('adminJobs');if(jobsBody)jobsBody.innerHTML=jobs.map(j=>`<tr><td>${esc(j.title)}</td><td>${esc(j.company)}</td><td>${esc(j.country)}</td><td><span class="pill">Sample / unverified</span></td><td>Not connected</td></tr>`).join('');const drafts=$('adminDrafts');if(drafts){const d=store.get('employerDrafts',[])||[];drafts.innerHTML=d.length?d.map(x=>`<tr><td>${esc(x.title)}</td><td>${esc(x.company)}</td><td>${esc(x.country)}</td><td>Browser-local draft</td></tr>`).join(''):'<tr><td colspan="4">No local employer drafts found in this browser.</td></tr>'}}
- function setupBottomNav(){}
-
- function setupSavedPage(){const grid=$('savedJobsPage');if(!grid)return;const ids=store.get('saved',[])||[];grid.innerHTML=ids.length?jobs.filter(j=>ids.includes(j.id)).map(card).join(''):'<div class="empty-state"><h3>No saved jobs yet</h3><p>Open a job and choose Save Job to see it here. Saved items are stored in this browser only.</p><a class="btn btn-primary" href="jobs.html">Find Jobs</a></div>'}
- function setupAppliedPage(){const el=$('appliedJobsPage');if(el)el.innerHTML='<div class="empty-state"><h3>No applications recorded</h3><p>Applications are not sent or stored online in this prototype. This page will show real application status after a secure backend is connected.</p><a class="btn btn-primary" href="jobs.html">Browse Jobs</a></div>'}
- function setupAlertsPage(){const form=$('jobAlertForm');if(!form)return;const saved=store.get('jobAlertPrefs',{});['keyword','country','category','type'].forEach(k=>{if(form.elements[k]&&saved[k])form.elements[k].value=saved[k]});const enabled=form.elements.enabled;if(enabled)enabled.checked=!!saved.enabled;form.addEventListener('submit',e=>{e.preventDefault();const v={keyword:form.elements.keyword.value.trim(),country:form.elements.country.value,category:form.elements.category.value,type:form.elements.type.value,enabled:!!form.elements.enabled.checked};store.set('jobAlertPrefs',v);$('jobAlertResult').innerHTML='<div class="notice notice-blue">Preferences saved on this device only. Email alerts are not sent because a backend is not connected.</div>'})}
- function setupClassifiedAd(){const form=$('classifiedAdForm');if(!form)return;form.addEventListener('submit',e=>{e.preventDefault();const title=$('adTitle')?.value.trim()||'';const category=$('adCategory')?.value||'';const country=$('adCountry')?.value||'';const city=$('adCity')?.value.trim()||'';const description=$('adDescription')?.value.trim()||'';const out=$('adFormResult');if(!out)return;out.innerHTML=`<div class="status-box"><strong>Preview only — nothing was published.</strong><p><b>${esc(title)}</b></p><p>${esc(category)} · ${esc(city)}, ${esc(country)}</p><p>${esc(description)}</p><p>Your details were not sent or saved. Real classifieds publishing needs a secure backend and moderation.</p></div>`;out.scrollIntoView({behavior:'smooth',block:'center'});});}
- function setupGuide(){
-  const links=document.querySelectorAll('[data-country-guide]');
-  links.forEach(a=>{
-   a.addEventListener('click',()=>{
-    const c=a.dataset.countryGuide;
-    const target=$('guideCountry');
-    if(target){target.textContent=c;target.scrollIntoView({behavior:'smooth',block:'center'});}
-   });
-  });
- }
-
- document.addEventListener('DOMContentLoaded',()=>{shell();setupHome();setupJobs();setupDetail();setupApply();setupProfile();setupEmployer();setupRatings();setupAdmin();setupGuide();setupSavedPage();setupAppliedPage();setupAlertsPage();setupClassifiedAd()});
+ document.addEventListener('DOMContentLoaded',()=>{shell();setupHome();setupJobs();});
  return {jobs,countries};
 })();
