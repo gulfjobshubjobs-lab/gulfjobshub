@@ -24,11 +24,14 @@ const GJH = (() => {
  function card(j,mode='grid'){return `<article class="job-card"><div class="job-top"><div class="job-logo" aria-hidden="true">${logo(j.company)}</div><span class="tag tag-muted">Sample</span></div><div><h3>${esc(j.title)}</h3><div class="company">${esc(j.company)}</div></div><div class="job-meta"><span>⌖ ${esc(j.city)}, ${esc(j.country)}</span><span>◷ ${esc(j.type)}</span></div><p class="job-snippet">${esc(j.description)}</p><div class="job-foot"><span class="salary">${esc(j.salary)}</span><a class="btn btn-primary btn-sm" href="job-details.html?id=${encodeURIComponent(j.id)}">View Job Details</a></div></article>`}
  
  function header(){
+  const isHome = location.pathname.endsWith('/index.html') || location.pathname.endsWith('/') || location.pathname === '';
+  const backAction = isHome ? 'href="index.html"' : 'href="javascript:void(0);" onclick="if(history.length>1){history.back();}else{location.href=\'index.html\';}"';
+  const backIcon = isHome ? '' : '<span style="font-size:16px;margin-right:4px;">‹</span>';
   return `<header class="site-header">
   <div class="container header-inner">
     <div class="header-left">
-      <a class="brand-logo-btn" href="index.html" aria-label="Home / Back">
-        <span class="brand-mark">GJH</span>
+      <a class="brand-logo-btn" ${backAction} aria-label="Go Back / Home">
+        <span class="brand-mark">${backIcon}GJH</span>
       </a>
     </div>
     <div class="header-center">
@@ -53,6 +56,33 @@ const GJH = (() => {
     </div>
   </div>
 </header>`
+ }
+
+ function bottomNav(){
+  const path = location.pathname;
+  const isHome = path.endsWith('/index.html') || path.endsWith('/') || path === '';
+  const isSearch = path.includes('search.html');
+  const isCategory = path.includes('category.html');
+  const isPost = path.includes('post-ad.html');
+
+  return `<nav class="gjh-bottom-nav" aria-label="Mobile Navigation">
+    <a href="index.html" ${isHome ? 'aria-current="page"' : ''}>
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="search.html" ${isSearch ? 'aria-current="page"' : ''}>
+      <span class="nav-icon">🔍</span>
+      <span>Search</span>
+    </a>
+    <a href="index.html#categories" ${isCategory ? 'aria-current="page"' : ''}>
+      <span class="nav-icon">📁</span>
+      <span>Categories</span>
+    </a>
+    <a href="post-ad.html" ${isPost ? 'aria-current="page"' : ''}>
+      <span class="nav-icon">➕</span>
+      <span>Post Ad</span>
+    </a>
+  </nav>`;
  }
 
  function footer(){return `<footer class="site-footer classified-footer"><div class="container"><div class="classified-footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">GJH</span><span class="brand-divider" style="background:#ffffff3b"></span><span><span class="brand-name footer-brand">GulfJobsHub</span><span class="brand-tag" style="display:block;color:#c1d6e3">GULF CLASSIFIEDS</span></span></a><p class="footer-desc">Browse local listings and opportunities across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman. Verify listings before you act.</p></div><div class="footer-col"><h4>Browse</h4><a href="index.html#categories">All categories</a><a href="search.html">Jobs</a><a href="category.html?category=Housing">Housing</a><a href="category.html?category=Services">Services</a></div><div class="footer-col"><h4>Community</h4><a href="post-ad.html">Post a free ad</a><a href="job-guide.html#safety">Safety guidance</a><a href="companies.html">Companies</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> GulfJobsHub. All rights reserved.</span><span>Preview listings are not verified. Real ad publishing is not connected.</span></div></div></footer>`}
@@ -100,15 +130,11 @@ const GJH = (() => {
   }
  }
 
- function shell(){document.body.insertAdjacentHTML('afterbegin',header());document.body.insertAdjacentHTML('beforeend',footer());$('year')&&($('year').textContent=new Date().getFullYear());initTranslation();}
- function setupHome(){const grid=$('homeJobs');if(grid)grid.innerHTML=jobs.slice(0,6).map(j=>card(j)).join('');}
- 
  function updateCitiesDropdown(selectedCountry, currentCityValue=''){
   const citySelect = $('city');
   if(!citySelect) return;
   
   if(citySelect.tagName.toLowerCase() === 'input'){
-   // Replace input with select for dynamic city options
    const selectEl = document.createElement('select');
    selectEl.id = 'city';
    selectEl.name = 'city';
@@ -123,7 +149,6 @@ const GJH = (() => {
     optionsHtml += `<option value="${esc(c)}" ${sel}>${esc(c)}</option>`;
    });
   } else {
-   // All cities across all GCC
    const allC = Array.from(new Set(Object.values(countryCities).flat()));
    allC.forEach(c => {
     const sel = (c.toLowerCase() === currentCityValue.toLowerCase()) ? 'selected' : '';
@@ -131,6 +156,26 @@ const GJH = (() => {
    });
   }
   citySelect.innerHTML = optionsHtml;
+ }
+
+ function shell(){
+  document.body.insertAdjacentHTML('afterbegin',header());
+  document.body.insertAdjacentHTML('beforeend',footer());
+  document.body.insertAdjacentHTML('beforeend',bottomNav());
+  $('year')&&($('year').textContent=new Date().getFullYear());
+  initTranslation();
+ }
+
+ function setupHome(){
+  const grid=$('homeJobs');
+  if(grid) grid.innerHTML=jobs.slice(0,6).map(j=>card(j)).join('');
+  
+  const homeCountry = $('homeCountry');
+  if(homeCountry){
+   homeCountry.addEventListener('change', (e) => {
+    updateCitiesDropdown(e.target.value);
+   });
+  }
  }
 
  function setupJobs(){
