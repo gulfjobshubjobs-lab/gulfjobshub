@@ -13,7 +13,7 @@
 </head>
 <body class="classified-category-page">
 <section class="page-hero"><div class="container"><div class="crumbs"><a href="index.html">Home</a> / Classifieds</div><h1 id="categoryTitle">Browse category</h1><p id="categoryIntro">Browse the GulfJobsHub directory.</p></div></section>
-<main class="container section"><div class="classified-category-notice"><strong>Category preview:</strong> This is a static website preview. Classified ads outside the sample job listings are not connected to a live posting system, so this page does not show real or verified ads.</div><div class="classified-category-actions"><a class="btn btn-primary" href="search.html">Browse sample job listings</a><a class="btn btn-outline" href="index.html">Back to all categories</a></div><section class="classified-section"><div class="classified-section-heading"><div><span class="section-kicker">DIRECTORY</span><h2>Explore other categories</h2></div></div><div class="classified-categories">
+<main class="container section"><div class="classified-category-notice"><strong>Category preview:</strong> This is a static website preview. Classified ads outside the sample job listings are not connected to a live posting system, so this page does not show real or verified ads.</div><div class="classified-category-actions"><a class="btn btn-primary" id="categoryBrowseLink" href="search.html">Browse sample job listings</a><a class="btn btn-outline" href="index.html#categories">Back to all categories</a></div><section class="classified-section" aria-live="polite"><div id="categoryResults" class="job-list"></div></section><section class="classified-section"><div class="classified-section-heading"><div><span class="section-kicker">DIRECTORY</span><h2>Explore other categories</h2></div></div><div class="classified-categories">
 <a class="classified-category" href="search.html"><span class="category-symbol">▤</span><span><strong>Jobs</strong><small>Find work across the Gulf</small></span><span class="category-arrow">›</span></a>
 <a class="classified-category" href="category.html?category=Job%20Seekers"><span class="category-symbol">♙</span><span><strong>Job Seekers</strong><small>Profiles and job-search listings</small></span><span class="category-arrow">›</span></a>
 <a class="classified-category" href="category.html?category=Temp%20Jobs"><span class="category-symbol">◷</span><span><strong>Temporary Jobs</strong><small>Short-term work listings</small></span><span class="category-arrow">›</span></a>
@@ -30,6 +30,27 @@
 <a class="classified-category" href="category.html?category=Services"><span class="category-symbol">⚒</span><span><strong>Services</strong><small>Local professional services</small></span><span class="category-arrow">›</span></a>
 </div></section></main>
 <script>
-(function(){const p=new URLSearchParams(location.search);const category=p.get('category')||'Classifieds';const title=document.getElementById('categoryTitle');const intro=document.getElementById('categoryIntro');title.textContent=category;document.title=category+' | GulfJobsHub';intro.textContent='Explore '+category.toLowerCase()+' listings across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.';})();
+(function(){
+ const p=new URLSearchParams(location.search), category=p.get('category')||'Classifieds';
+ const title=document.getElementById('categoryTitle'), intro=document.getElementById('categoryIntro'), out=document.getElementById('categoryResults'), browse=document.getElementById('categoryBrowseLink');
+ const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ title.textContent=category; document.title=category+' | GulfJobsHub';
+ intro.textContent='Explore '+category.toLowerCase()+' listings across Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman.';
+ if(category.toLowerCase()==='jobs'||category.toLowerCase()==='temporary jobs') { browse.href='search.html'+(category.toLowerCase()==='temporary jobs'?'?type=Temporary':''); }
+ else browse.href='search.html';
+ const jobCategories=['Telecom / Fiber Optics','Healthcare','Engineering & Construction','Hospitality & Hotels','Sales & Marketing','Skilled Trades & Maintenance'];
+ const examples=[
+  {title:'Fiber Optic Technician',company:'Example Telecom Services',city:'Riyadh',country:'Saudi Arabia',category:'Telecom / Fiber Optics',id:'sample-01'},
+  {title:'Registered Nurse',company:'Example Healthcare Group',city:'Dubai',country:'UAE',category:'Healthcare',id:'sample-02'},
+  {title:'Civil Site Engineer',company:'Example Gulf Projects',city:'Doha',country:'Qatar',category:'Engineering & Construction',id:'sample-03'},
+  {title:'Hotel Front Office Supervisor',company:'Example Hospitality Co.',city:'Muscat',country:'Oman',category:'Hospitality & Hotels',id:'sample-04'},
+  {title:'Sales Executive',company:'Example Trading Group',city:'Kuwait City',country:'Kuwait',category:'Sales & Marketing',id:'sample-05'},
+  {title:'Electrical Maintenance Technician',company:'Example Industrial Services',city:'Manama',country:'Bahrain',category:'Skilled Trades & Maintenance',id:'sample-06'}
+ ];
+ const matching=examples.filter(j=>j.category.toLowerCase()===category.toLowerCase() || (category.toLowerCase()==='jobs' && jobCategories.includes(j.category)) || (category.toLowerCase()==='temporary jobs' && false));
+ if(matching.length){out.innerHTML='<div class="classified-section-heading"><div><span class="section-kicker">SAMPLE LISTINGS</span><h2>'+safe(category)+' examples</h2><p>These are demonstrations, not verified vacancies.</p></div></div>'+matching.map(j=>'<article class="job-card"><div class="job-top"><span class="tag tag-muted">Sample · Not verified</span></div><h3>'+safe(j.title)+'</h3><div class="company">'+safe(j.company)+'</div><div class="job-meta"><span>'+safe(j.city)+', '+safe(j.country)+'</span></div><div class="job-foot"><span>'+safe(j.category)+'</span><a class="btn btn-primary btn-sm" href="job-details.html?id='+encodeURIComponent(j.id)+'">View Details</a></div></article>').join('');}
+ else if(category.toLowerCase()==='classifieds'){out.innerHTML='<p>Select a category below to browse its available preview content.</p>';}
+ else {out.innerHTML='<div class="empty-state"><h3>No listings in this category yet</h3><p>This category is ready to browse, but no sample ads are available here. Real ads will appear only after a secure publishing and moderation backend is connected.</p><a class="btn btn-primary" href="post-ad.html">Preview posting an ad</a></div>';}
+})();
 </script>
 </body></html>
