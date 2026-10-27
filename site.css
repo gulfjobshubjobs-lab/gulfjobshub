@@ -48,3 +48,29 @@ body { top: 0 !important; }
 .goog-te-banner-frame { display: none !important; }
 #goog-gt-tt { display: none !important; }
 .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+
+/* Exact Header Layout: Left Logo (Clickable Home/Back), Center Title, Right Language Dropdown */
+.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 70px; padding: 5px 0; }
+.header-left { display: flex; align-items: center; }
+.brand-logo-btn { text-decoration: none; display: inline-block; cursor: pointer; }
+.brand-logo-btn .brand-mark { font-weight: 950; font-size: 26px; color: #087eb0; background: #eaf5fb; padding: 6px 12px; border-radius: 10px; border: 1px solid #c8d7e1; display: inline-block; }
+.brand-logo-btn:hover .brand-mark { background: #087eb0; color: #fff; }
+
+.header-center { text-align: center; }
+.brand-title-link { text-decoration: none; display: flex; flex-direction: column; align-items: center; }
+.brand-title-link .brand-name { font-weight: 850; font-size: 20px; color: #12324a; letter-spacing: -0.5px; line-height: 1.1; }
+.brand-title-link .brand-tag { font-size: 9px; letter-spacing: 1.5px; font-weight: 800; color: #087eb0; margin-top: 2px; }
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+.lang-selector-wrap { display: inline-flex; align-items: center; }
+.lang-select { background: #fff; border: 1px solid #c8d7e1; border-radius: 8px; padding: 7px 10px; font-size: 13px; font-weight: 700; color: #174765; cursor: pointer; outline: none; }
+.lang-select:hover { border-color: #087eb0; }
+
+@media(max-width: 680px){
+ .header-inner { flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 8px 0; }
+ .header-center { order: 2; }
+ .header-left { order: 1; }
+ .header-right { order: 3; width: 100%; justify-content: space-between; margin-top: 4px; border-top: 1px solid #edf1f4; padding-top: 6px; }
+ .brand-title-link .brand-name { font-size: 17px; }
+ .brand-logo-btn .brand-mark { font-size: 22px; padding: 4px 9px; }
+}
