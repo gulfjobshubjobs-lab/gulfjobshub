@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="google-site-verification" content="lcEnQqlHszcTuVWWiz9zt9KWniLqSTNprz-uhc9ByJg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GulfJobsHub - GCC Classifieds</title>
+<title>Post a Free Ad | GulfJobsHub</title>
+<meta name="description" content="Preview the GulfJobsHub classified ad form for listings across six Gulf countries.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0b5e8e">
 <link rel="stylesheet" href="site.css">
 <script defer src="site.js"></script>
 </head>
 <body>
-<main class="container section">
-  <div class="panel" style="padding:25px;background:#fff;border-radius:12px;border:1px solid #dce5eb;">
-    <h1>GulfJobsHub</h1>
-    <p>Explore verified classifieds and jobs across GCC countries.</p>
-    <a class="btn btn-primary" href="index.html">Back to Home</a>
-  </div>
-</main>
-</body>
-</html>
+<section class="page-hero"><div class="container"><div class="crumbs"><a href="index.html">Home</a> / Post Free Ad</div><h1>Post a Free Ad</h1><p>Share a listing with the Gulf community.</p></div></section>
+<main class="container section"><div class="classified-post-layout"><form id="classifiedAdForm" class="panel classified-post-form"><div class="classified-category-notice"><strong>Preview only:</strong> this GitHub Pages version cannot publish or moderate ads. Submitting this form will not send your details anywhere.</div><div class="form-grid"><div class="form-field"><label for="adTitle">Ad title</label><input id="adTitle" name="title" required maxlength="100" placeholder="Enter a clear title"></div><div class="form-field"><label for="adCategory">Category</label><select id="adCategory" name="category" required><option value="">Choose a category</option><option>Jobs</option><option>Job Seekers</option><option>Temporary Jobs</option><option>Items for Sale</option><option>Items Wanted</option><option>Learning</option><option>Housing</option><option>Commercial Property</option><option>Plots</option><option>Housing Wanted</option><option>Childcare</option><option>Community</option><option>Business (B2B)</option><option>Services</option></select></div><div class="form-field"><label for="adCountry">Country</label><select id="adCountry" name="country" required><option value="">Choose a country</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div><div class="form-field"><label for="adCity">City</label><input id="adCity" name="city" required maxlength="80" placeholder="City"></div><div class="form-field full"><label for="adDescription">Description</label><textarea id="adDescription" name="description" required rows="6" maxlength="3000" placeholder="Describe the listing clearly"></textarea></div></div><button class="btn btn-primary" type="submit">Preview Ad Submission</button><div id="adFormResult" aria-live="polite"></div></form><aside class="panel classified-post-help"><h2>Before posting</h2><ul><li>Use a clear and accurate title.</li><li>Do not include passwords, bank details, or other sensitive information.</li><li>Never ask applicants or buyers to pay suspicious advance fees.</li><li>Verify people, offers and documents independently.</li></ul><a href="job-guide.html#safety">Read safety guidance →</a></aside></div></main>
+<script>document.getElementById('classifiedAdForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('adFormResult').innerHTML='<div class="classified-category-notice" style="margin-top:16px">Your form looks complete, but this is a preview only. Nothing has been published or sent. A secure backend and moderation process must be connected before real ads can be accepted.</div>';});</script>
+</body></html>

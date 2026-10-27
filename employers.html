@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="google-site-verification" content="lcEnQqlHszcTuVWWiz9zt9KWniLqSTNprz-uhc9ByJg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GulfJobsHub - GCC Classifieds</title>
+<title>For Employers | GulfJobsHub</title>
+<meta name="description" content="Preview employer job-posting fields and company workflow for GulfJobsHub. This is a local demo, not a live publishing system.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#102a43">
+<meta property="og:title" content="For Employers | GulfJobsHub">
+<meta property="og:description" content="Preview employer job-posting fields and company workflow for GulfJobsHub. This is a local demo, not a live publishing system.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://gulfjobshubjobs-lab.github.io/gulfjobshub/employers.html">
 <link rel="stylesheet" href="site.css">
 <script defer src="site.js"></script>
+
 </head>
 <body>
-<main class="container section">
-  <div class="panel" style="padding:25px;background:#fff;border-radius:12px;border:1px solid #dce5eb;">
-    <h1>GulfJobsHub</h1>
-    <p>Explore verified classifieds and jobs across GCC countries.</p>
-    <a class="btn btn-primary" href="index.html">Back to Home</a>
-  </div>
-</main>
+<section class="page-hero"><div class="container"><div class="crumbs"><a href="index.html">Home</a> / For Employers</div><h1>Employer Workspace</h1><p>Preview the information needed for a clear, trustworthy job post. No vacancy is published from this page.</p></div></section><main class="container section"><div class="notice notice-red"><strong>Employer demo only:</strong> no employer account, company verification, application inbox or public job publishing is active. Do not enter passwords or confidential company documents.</div><div class="feature-grid" style="margin-bottom:25px"><article class="feature-card"><div class="feature-icon">▤</div><h3>Post a job</h3><p>Create a browser-only draft with job details and requirements.</p></article><article class="feature-card"><div class="feature-icon">✓</div><h3>Company verification</h3><p>Verification must be reviewed by the site owner before any badge is shown.</p></article><article class="feature-card"><div class="feature-icon">♙</div><h3>Manage applicants</h3><p>Candidate CVs and applications require secure, role-based access.</p></article></div><div class="form-layout"><div class="panel"><h2 style="margin-top:0">Create a job-post draft</h2><form id="employerForm" class="form-grid"><div class="form-field"><label for="company">Company name *</label><input id="company" name="company" required maxlength="150"></div><div class="form-field"><label for="title">Job title *</label><input id="title" name="title" required maxlength="150"></div><div class="form-field"><label for="country">Country *</label><select id="country" name="country" required><option value="">Choose country</option><option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option></select></div><div class="form-field"><label for="city">City *</label><input id="city" name="city" required maxlength="100"></div><div class="form-field"><label for="category">Category *</label><select id="category" name="category" required><option value="">Choose category</option><option>IT & Software</option><option>Telecom / Fiber Optics</option><option>Engineering & Construction</option><option>Healthcare</option><option>Sales & Marketing</option><option>Hospitality & Hotels</option><option>Skilled Trades & Maintenance</option><option>Logistics & Driving</option><option>Administration</option><option>Finance</option></select></div><div class="form-field"><label for="type">Job type *</label><select id="type" name="type" required><option value="">Choose type</option><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Temporary</option><option>Remote</option></select></div><div class="form-field full"><label for="description">Job description and requirements *</label><textarea id="description" name="description" required minlength="40" maxlength="5000" placeholder="Describe duties, required skills, experience, education, salary if available, closing date and application process."></textarea></div><div class="form-field full"><label class="checkline"><input type="checkbox" required> I understand this is a local demo draft and is not published or sent to GulfJobsHub.</label></div><div class="form-field full"><button class="btn btn-primary" type="submit">Save Draft on This Device</button></div></form><div id="employerResult" aria-live="polite"></div></div><section class="section"><div class="section-head"><div><h2>Your local drafts</h2><p>Visible only in this browser; not available to the admin or public.</p></div></div><div id="employerDraftList"></div></section></div></main>
 </body>
 </html>
