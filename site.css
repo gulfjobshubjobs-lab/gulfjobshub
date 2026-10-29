@@ -39,3 +39,8 @@ body{background:#f4f7f9;color:#20384b}
 @media(min-width:681px){.classified-search{grid-template-columns:minmax(0,1fr) minmax(180px,230px) minmax(110px,150px)}}
 .classified-search{grid-template-columns:minmax(0,1fr) minmax(180px,230px) minmax(110px,150px)}
 @media(max-width:680px){.classified-search{grid-template-columns:minmax(0,1fr)}.classified-search #homeKeyword,.classified-search #homeCountry,.classified-search button[type="submit"]{grid-column:1;grid-row:auto}}
+
+
+/* Accessible fixed quick navigation requested for mobile users */
+.gjh-bottom-nav{display:none}
+@media(max-width:700px){body{padding-bottom:72px}.gjh-bottom-nav{position:fixed;z-index:1000;left:0;right:0;bottom:0;display:flex;justify-content:space-around;gap:4px;background:#fff;border-top:1px solid #d8e1e8;box-shadow:0 -4px 16px rgba(16,42,67,.08);padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}.gjh-bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#243b53;text-decoration:none;font-size:20px;min-height:44px}.gjh-bottom-nav small{font-size:11px;font-weight:700;line-height:1.2}.gjh-bottom-nav a:focus-visible{outline:3px solid #2680c2;outline-offset:2px;border-radius:6px}}

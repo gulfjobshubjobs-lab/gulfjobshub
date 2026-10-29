@@ -32,3 +32,12 @@ IMPORTANT LIMITATIONS
 
 LIVE SITE (UNCHANGED BY THIS PACKAGE)
 https://gulfjobshubjobs-lab.github.io/gulfjobshub/
+
+
+Backend limitations
+-------------------
+This is a static GitHub Pages website. Search runs against the included demonstration listings. Saved jobs, profile data, job-alert preferences, ratings, and employer drafts use browser-local storage only. CV selections are not uploaded. Applications, email alerts, ad publishing, reports, accounts, and admin moderation are not connected to a secure backend and must not be described as live services. All included listings are samples, not verified vacancies.
+
+Mobile quick navigation
+-----------------------
+A mobile quick navigation bar provides Home, Profile, Saved, and Menu links.
